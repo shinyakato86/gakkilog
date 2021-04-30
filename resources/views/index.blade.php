@@ -4,7 +4,7 @@
 
 <main class="index">
   <div class="section-search">
-    <div class="section_inner-01">
+    <div class="section_inner-search">
 
       <div class="searchArea">
       <div class="heading02Wrap">

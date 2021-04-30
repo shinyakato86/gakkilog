@@ -2,7 +2,7 @@
   header
 ============================================================================= */
 .header {
-  padding: 12px 0;
+  padding: 10px 0;
   box-shadow: 0 2px 8px 0 rgb(0 0 0 / 10%);
   position: fixed;
   top: 0;
@@ -18,9 +18,17 @@
   width: $width_base-l;
 }
 
+.header_logo{
+  transition: .2s;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
 .headerNav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .headerNavList {

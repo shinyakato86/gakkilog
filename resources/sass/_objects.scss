@@ -161,6 +161,12 @@ input[type="checkbox"]:checked+.checkbox-01::before{
   width: $width_base-l;
 }
 
+.section_inner-search {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 90%;
+}
+
 .leadText {
   font-size: 1.6rem;
 }
@@ -198,7 +204,7 @@ input[type="checkbox"]:checked+.checkbox-01::before{
 }
 
 .section-search {
-  padding: 50px 0 40px;
+  padding: 60px 0 50px;
   background: url("../images/index_bg.jpg") no-repeat center/cover;
 }
 

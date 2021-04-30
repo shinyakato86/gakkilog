@@ -10966,7 +10966,7 @@ body {
 }
 
 .c-blue {
-  color: #333 !important;
+  color: #ff8c00 !important;
 }
 
 .color > a {
@@ -11003,7 +11003,7 @@ body {
   header
 ============================================================================= */
 .header {
-  padding: 12px 0;
+  padding: 10px 0;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
@@ -11019,9 +11019,17 @@ body {
   width: 96%;
 }
 
+.header_logo {
+  transition: 0.2s;
+}
+.header_logo:hover {
+  opacity: 0.8;
+}
+
 .headerNav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .headerNavList {
@@ -11129,7 +11137,7 @@ body {
   right: 0;
   margin: 0 auto;
   height: 1px;
-  background-color: #333;
+  background-color: #ff8c00;
 }
 
 .heading02 {
@@ -11158,7 +11166,7 @@ body {
 .heading03::before {
   content: "";
   border-radius: 3px;
-  background-color: #333;
+  background-color: #ff8c00;
   display: inline-block;
   width: 0.3rem;
   height: 2rem;
@@ -11199,8 +11207,8 @@ body {
 }
 
 .submitBtn {
-  background-color: #333;
-  border: 2px solid #333;
+  background-color: #ff8c00;
+  border: 2px solid #ff8c00;
   border-radius: 5px;
   color: #fff;
   display: block;
@@ -11212,7 +11220,7 @@ body {
 }
 .submitBtn:hover {
   background-color: #fff;
-  color: #333;
+  color: #ff8c00;
 }
 
 .checkbox-01 {
@@ -11227,8 +11235,8 @@ body {
   width: 8px;
   height: 13px;
   margin-top: -9px;
-  border-right: 2px solid #333;
-  border-bottom: 2px solid #333;
+  border-right: 2px solid #ff8c00;
+  border-bottom: 2px solid #ff8c00;
   opacity: 0;
   transform: rotate(45deg);
   z-index: 1;
@@ -11267,6 +11275,12 @@ input[type=checkbox]:checked + .checkbox-01::before {
   max-width: 1000px;
   margin: 0 auto;
   width: 96%;
+}
+
+.section_inner-search {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 90%;
 }
 
 .leadText {
@@ -11375,8 +11389,8 @@ input[type=checkbox]:checked + .checkbox-01::before {
 .searchBtn {
   max-width: 180px;
   margin: 20px auto 0;
-  background-color: #333;
-  border: 2px solid #333;
+  background-color: #ff8c00;
+  border: 2px solid #ff8c00;
   border-radius: 5px;
   color: #fff;
   display: block;
@@ -11388,5 +11402,5 @@ input[type=checkbox]:checked + .checkbox-01::before {
 }
 .searchBtn:hover {
   background-color: #fff;
-  color: #333;
+  color: #ff8c00;
 }

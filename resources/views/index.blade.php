@@ -124,7 +124,7 @@
       <p class="leadText ta-center">レビューや写真で見つけよう！</p>
       <div class="page-support__search">
         <div class="c-searchContent">
-          <h3 class="heading03">好みで探す</h3>
+          <h3 class="heading03">カテゴリーで探す</h3>
           <ul class="categoryList">
             <li class="categoryList_item">
               <a href="" class="c-searchContent__link">ラーメン</a>

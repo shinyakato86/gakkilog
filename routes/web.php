@@ -19,10 +19,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
 Route::get('/post/new', [App\Http\Controllers\PostController::class, 'create'])->name('post.new');
 
 Route::get('/post', [App\Http\Controllers\PostController::class, 'list'])->name('post.list');
 
-Route::get('/detail', [App\Http\Controllers\PostController::class, 'detail'])->name('post.detail');
+Route::post('/post/create', [App\Http\Controllers\PostController::class, 'store'])->name('post.store');
+
+Route::get('/post/detail{id}', [App\Http\Controllers\PostController::class, 'show'])->name('post.detail');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Detailpost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -106,17 +107,8 @@ class PostController extends Controller
 
         $categories = \DB::table('categories')->pluck('category_name');
 
-        $users = \DB::table('users')->pluck('name');
 
-        $departments = \DB::table('departments')->pluck('department_name');
-
-        $status = \DB::table('status')->pluck('status_name');
-
-        $clients = \DB::table('clients')->pluck('client_name');
-
-        $today = new Carbon(Carbon::now());
-
-        return view('new', compact('post', 'categories', 'users', 'departments', 'status', 'clients', 'today'));
+        return view('new', compact('post', 'categories'));
 
     }
 
@@ -126,35 +118,33 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateProjectlisRequest $request)
+    public function store(Request $request)
     {
-        $projectlist = new Projectlist;
+        $detailpost = new Detailpost;
         $user = \Auth::user();
 
-        $projectlist->project_name = request('project_name');
-        $projectlist->department_name = request('department_name');
-        $projectlist->sales_name = request('sales_name');
-        $projectlist->client_name = request('client_name');
-        $projectlist->price = request('price');
-        $projectlist->status = request('status');
-        $projectlist->accounting_date = request('accounting_date');
-        $projectlist->author_name = $user->name;
-        $projectlist->save();
+        $inputs=request()->validate([
+          'detail_img'=>'image'
+        ]);
 
-        $data = [];
+        if($file = $request->detail_img){
+          //保存するファイルに名前をつける    
+             $detail_img = time().'.'.$file->getClientOriginalExtension();
+          //Laravel直下のpublicディレクトリに新フォルダをつくり保存する
+             $target_path = public_path('/uploads/');
+             $file->move($target_path,$detail_img);
+                 
+           }else{
+          //画像が登録されなかった時はから文字をいれる
+             $name = "";
+           }
 
-        for ($i=0; $i < count(request('creator_name')); $i++) {
+        $detailpost->detail_name = request('detail_name');
+        $detailpost->detail_time = request('detail_time');
+        $detailpost->detail_img = $detail_img;
+        $detailpost->save();
 
-          $data[]= array ('creator_name'=>$request['creator_name'][$i],
-                          'id'=>$projectlist->id,
-                          'creator_price'=>$request['creator_price'][$i],
-                          'creator_category'=>$request['creator_category'][$i]);
-
-        }
-
-        DB::table('creators')->insert($data);
-
-        return redirect()->route('projectlist.detail', ['id' => $projectlist->id]);
+        return redirect()->route('post.detail', ['id' => $detailpost->id]);
     }
 
     /**
@@ -165,11 +155,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $projectlist = Projectlist::find($id);
+        $detailpost = Detailpost::find($id);
 
-        $creators = Creators::all()->where('id',$id);
-
-        return view('detail', compact('projectlist', 'creators'));
+        return view('detail', compact('detailpost'));
     }
 
     /**

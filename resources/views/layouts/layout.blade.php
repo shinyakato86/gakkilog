@@ -28,10 +28,15 @@
           </a>
         </p>
           <ul class="headerNavList js-headerNavList">
-            <!-- Authentication Links -->@guest
-            <li class="headerNavList_item"> <a class="btn mr-3" href="{{ route('login') }}">{{ __('ログイン') }}</a> </li> @if (Route::has('register'))
-            <li class="headerNavList_item"> <a class="btn-secondary btn" href="{{ route('register') }}">{{ __('新規登録') }}</a> </li> @endif @else
-            <li class=" class="headerNavList_item""> <a id="navbarDropdown" class="nav-link dropdown-toggle btn btn-secondary px-3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+          <a class="btn-secondary btn" href="{{ route('post.new') }}">{{ __('投稿') }}</a>
+            <!-- Authentication Links -->
+            @guest
+            <li class="headerNavList_item"> <a class="btn mr-3" href="{{ route('login') }}">{{ __('ログイン') }}</a> </li>
+            @if (Route::has('register'))
+            <li class="headerNavList_item"> <a class="btn-secondary btn" href="{{ route('register') }}">{{ __('新規登録') }}</a> </li>
+            @endif @else
+            <li class="headerNavList_item d-flex"> 
+              <a id="navbarDropdown" class="nav-link dropdown-toggle btn btn-secondary px-3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                               ID: {{ Auth::user()->name }}でログイン中 <span class="caret"></span>
                           </a>
               <div class="headerNavList_item" aria-labelledby="navbarDropdown">

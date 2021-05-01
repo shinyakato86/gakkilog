@@ -11120,6 +11120,12 @@ body {
   width: 96%;
 }
 
+.contentsArea-s {
+  max-width: 720px;
+  margin: 0 auto;
+  width: 96%;
+}
+
 .heading02Wrap {
   margin-bottom: 40px;
 }
@@ -11320,7 +11326,7 @@ input[type=checkbox]:checked + .checkbox-01::before {
 }
 
 .section-search {
-  padding: 50px 0 40px;
+  padding: 60px 0 50px;
   background: url(/images/index_bg.jpg?f61739e79bcceaa5ecbdc78b16592948) no-repeat center/cover;
 }
 
@@ -11345,6 +11351,10 @@ input[type=checkbox]:checked + .checkbox-01::before {
 }
 
 .archiveContent {
+  width: 75%;
+}
+
+.registContent {
   width: 75%;
 }
 
@@ -11403,4 +11413,49 @@ input[type=checkbox]:checked + .checkbox-01::before {
 .searchBtn:hover {
   background-color: #fff;
   color: #ff8c00;
+}
+
+.registBlock_item + .registBlock_item {
+  margin-top: 20px;
+}
+
+.registBlock_text {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  font-size: 1.6rem;
+  border-bottom: 2px solid #ff8c00;
+}
+
+.tabBtn.is-active {
+  background-color: #ff8c00;
+}
+
+.tabBtn.is-active {
+  background-color: #ff8c00;
+}
+
+.tabContent_item {
+  display: none;
+}
+.tabContent_item.show {
+  display: block;
+}
+
+.table-01 {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.table-01 > tbody th {
+  font-size: 1.4rem;
+  width: 25%;
+  border-bottom: 2px solid #ff8c00;
+  padding: 15px;
+  text-align: center;
+  vertical-align: middle;
+}
+.table-01 > tbody td {
+  font-size: 1.4rem;
+  border-bottom: 2px solid #cecece;
+  padding: 15px;
 }

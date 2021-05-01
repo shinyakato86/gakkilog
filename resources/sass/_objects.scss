@@ -4,6 +4,12 @@
   width: $width_base-l;
 }
 
+.contentsArea-s {
+  max-width: 720px;
+  margin: 0 auto;
+  width: $width_base-l;
+}
+
 .heading02Wrap {
   margin-bottom: 40px;
 }
@@ -232,6 +238,10 @@ input[type="checkbox"]:checked+.checkbox-01::before{
   width: 75%;
 }
 
+.registContent {
+  width: 75%;
+}
+
 .searchList {
   display: flex;
   flex-wrap: wrap;
@@ -286,5 +296,58 @@ input[type="checkbox"]:checked+.checkbox-01::before{
   &:hover {
     background-color: #fff;
     color: $color_main;
+  }
+}
+
+.registBlock_item {
+  & + & {
+    margin-top: 20px;
+  }
+}
+
+.registBlock_text {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  font-size: 1.6rem;
+  border-bottom: 2px solid $color_main;
+}
+
+.tabBtn {
+  &.is-active {
+    background-color: $color_main;
+  }
+}
+
+.tabBtn {
+  &.is-active {
+    background-color: $color_main;
+  }
+}
+
+.tabContent_item {
+  display: none;
+  &.show {
+    display: block;
+  }
+}
+
+.table-01 {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  > tbody {
+    th {
+      font-size: 1.4rem;
+      width: 25%;
+      border-bottom: 2px solid $color_main;
+      padding: 15px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    td {
+      font-size: 1.4rem;
+      border-bottom: 2px solid #cecece;
+      padding: 15px;
+    }
   }
 }

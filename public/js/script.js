@@ -55,6 +55,13 @@ $(function () {
     }, 500);
     return false;
   });
+  var tabs = $(".tabBtn");
+  $(".tabBtn").on("click", function () {
+    $(".is-active").removeClass("is-active");
+    $(this).addClass("is-active");
+    var index = tabs.index(this);
+    $(".tabContent_item").removeClass("show").eq(index).addClass("show");
+  });
 });
 /******/ })()
 ;

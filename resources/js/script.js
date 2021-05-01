@@ -53,6 +53,17 @@ $(function(){
         }, 500);
         return false;
     });
-	
-});
 
+
+
+  let tabs = $(".tabBtn");
+  $(".tabBtn").on("click", function() {
+    $(".is-active").removeClass("is-active");
+    $(this).addClass("is-active");
+    const index = tabs.index(this);
+    $(".tabContent_item").removeClass("show").eq(index).addClass("show");
+  })
+
+
+
+});

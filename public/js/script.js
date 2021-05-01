@@ -46,14 +46,6 @@ $(function () {
         $('.header').removeClass('is-active');
       }
     }
-  }); // pagetopボタン
-
-  var pagetop = $('#js-pagetop');
-  pagetop.on('click', function () {
-    $('body,html').animate({
-      scrollTop: 0
-    }, 500);
-    return false;
   });
   var tabs = $(".tabBtn");
   $(".tabBtn").on("click", function () {
@@ -61,6 +53,42 @@ $(function () {
     $(this).addClass("is-active");
     var index = tabs.index(this);
     $(".tabContent_item").removeClass("show").eq(index).addClass("show");
+  });
+  var dropzone = document.getElementById('js-dropzone');
+  var overlayText = document.getElementById('js-overlay-text');
+  var overlayArea = document.getElementById('js-overlay-area');
+  var fileInput = document.getElementById('file_upload');
+  var selectedFile = document.getElementById('js-selected-file'); // ドロップ可能エリアに入った時
+
+  dropzone.addEventListener('dragenter', function () {
+    overlayArea.classList.add('overlay');
+    overlayText.classList.add('overlay-text');
+    overlayText.classList.remove('no-active');
+  }); // ドロップ可能エリアを出た時
+
+  overlayArea.addEventListener('dragleave', function () {
+    overlayArea.classList.remove('overlay');
+    overlayText.classList.remove('overlay-text');
+    overlayText.classList.add('no-active');
+  }); // ドロップ可能エリアにカーソルがある時
+
+  overlayArea.addEventListener('dragover', function (e) {
+    e.preventDefault();
+  }); // ファイルをドロップした時
+
+  overlayArea.addEventListener('drop', function (e) {
+    e.preventDefault();
+    var fileName = e.dataTransfer.files[0].name;
+    selectedFile.innerText = fileName;
+    selectedFile.classList.remove('no-active');
+    overlayArea.classList.remove('overlay');
+    overlayText.classList.remove('overlay-text');
+    overlayText.classList.add('no-active');
+  });
+  fileInput.addEventListener('change', function () {
+    var fileName = fileInput.files[0].name;
+    selectedFile.classList.remove('no-active');
+    selectedFile.innerText = fileName;
   });
 });
 /******/ })()

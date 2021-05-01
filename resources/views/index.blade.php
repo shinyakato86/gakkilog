@@ -44,7 +44,7 @@
     <div class="section_inner-01">
       <div class="heading02Wrap">
         <h2 class="heading02">NEW</h2>
-        <p class="heading02-sub">新着情報</p>
+        <p class="heading02-sub">新着投稿</p>
       </div>
       <div class="newPostArea">
 

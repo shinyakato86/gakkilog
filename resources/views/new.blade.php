@@ -6,7 +6,7 @@
   <div class="contentsArea">
     <div class="l-content-lg">
        <div class="heading02Wrap">
-        <h2 class="heading02">SIGHTSEEING SPOT</h2>
+        <h2 class="heading02">MUSICAL INSTRUMENT</h2>
         <p class="heading02-sub">観光スポット登録</p>
       </div>
 
@@ -16,23 +16,53 @@
           {{ Form::open(['route' => 'post.store', 'id' => 'uriage_form','enctype'=>'multipart/form-data']) }}
             <div class="registBlock">
               <div class="registBlock_item">
+                <p class="registBlock_text">メーカー</p>
+                <input class="input-01" type="text" name="detail_maker" placeholder="" value="{{ old('detail_name') }}" required="">
+              </div>
+
+              <div class="registBlock_item">
+                <p class="registBlock_text">カテゴリー</p>
+                  <div class="selectWrap">
+                    <select name="category_id" class="select-01">
+                      <option value="">選択</option>
+                        @foreach($categories as $value)
+                          <option value="{{ $value->id }}">{{ $value->category_name }}</option>
+                        @endforeach
+                    </select>
+                  </div>
+              </div>
+
+              <div class="registBlock_item">
                 <p class="registBlock_text">名称</p>
-                <input class="input-01" type="text" name="detail_name" placeholder="" value="{{ old('detail_name') }}" required="">
+                <input class="input-01" type="text" name="detail_name" placeholder="" value="{{ old('detail_name') }}">
               </div>
 
               <div class="registBlock_item">
-                <p class="registBlock_text">営業時間</p>
-                <input class="input-01" type="text" name="detail_time" placeholder="" value="{{ old('detail_time') }}">
+                <p class="registBlock_text">詳細</p>
+                <textarea name="detail_detail" cols="30" rows="5" class="input-01"></textarea>
               </div>
 
               <div class="registBlock_item">
-                <p class="registBlock_text">画像</p>
-                <input class="input-01" type="file" name="detail_img" placeholder="" value="">
+                <p class="registBlock_text">コメント</p>
+                <textarea name="detail_comment" cols="30" rows="5" class="input-01"></textarea>
+              </div>
+
+              <div class="drop-zone mt40" id="js-dropzone">
+                <div class="overlay-area" id="js-overlay-area">
+                    <p class="no-active" id="js-overlay-text">ここにドラッグ&ドロップしてください。</p>
+                </div>
+                <p class="drop-zone-text">ファイルを選択するか、ドラッグ&ドロップしてください。</p>
+                <label for="file_upload" class="select-file" id="js-select-file">
+                    ファイルを選択してください
+                    <input class="input-01" type="file" name="detail_img" id="file_upload" placeholder="" value="">
+                </label>
+                <div class="selected-file no-active" id="js-selected-file">
+                </div>
               </div>
 
             </div>
 
-            <div class="p-form__btn">
+            <div class="d-flex justify-content-center mt40">
               {{ Form::submit('投稿する', ['class' => 'submitBtn']) }}
             </div>
           {{ Form::close() }}

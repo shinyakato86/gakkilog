@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
-use App\Models\Detailpost;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -105,7 +106,7 @@ class PostController extends Controller
     {
         $post = new Post;
 
-        $categories = \DB::table('categories')->pluck('category_name');
+        $categories = Category::all();
 
 
         return view('new', compact('post', 'categories'));
@@ -120,31 +121,31 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $detailpost = new Detailpost;
-        $user = \Auth::user();
+        $post = new Post;
+        $user_id = Auth::id();
 
         $inputs=request()->validate([
           'detail_img'=>'image'
         ]);
 
         if($file = $request->detail_img){
-          //保存するファイルに名前をつける    
-             $detail_img = time().'.'.$file->getClientOriginalExtension();
-          //Laravel直下のpublicディレクトリに新フォルダをつくり保存する
-             $target_path = public_path('/uploads/');
-             $file->move($target_path,$detail_img);
-                 
-           }else{
-          //画像が登録されなかった時はから文字をいれる
-             $name = "";
-           }
+          $detail_img = time().'.'.$file->getClientOriginalExtension();
+          $target_path = public_path('/uploads/');
+          $file->move($target_path,$detail_img);
+        }else{
+        $detail_img = "no_image.jpg";
+        }
 
-        $detailpost->detail_name = request('detail_name');
-        $detailpost->detail_time = request('detail_time');
-        $detailpost->detail_img = $detail_img;
-        $detailpost->save();
+        $post->user_id = $user_id;
+        $post->category_id = request('category_id'); 
+        $post->detail_name = request('detail_name');
+        $post->detail_maker = request('detail_maker');
+        $post->detail_detail = request('detail_detail');
+        $post->detail_comment = request('detail_comment');
+        $post->detail_img = $detail_img;
+        $post->save();
 
-        return redirect()->route('post.detail', ['id' => $detailpost->id]);
+        return redirect()->route('post.detail', ['id' => $post->id]);
     }
 
     /**
@@ -155,9 +156,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $detailpost = Detailpost::find($id);
+        $post = post::find($id);
 
-        return view('detail', compact('detailpost'));
+        return view('detail', compact('post'));
     }
 
     /**
@@ -259,6 +260,26 @@ class PostController extends Controller
     public function detail(Request $request)
     {
       return view('detail');
+    }
+
+
+        /**
+     * コメント投稿
+     * @param Illustration $illustration
+     * @param AddComment $request
+     * @return \Illuminate\Http\Response
+     */
+    public function addComment(AddComment $request, $id)
+    {
+        $comment = new Comment();
+        $comment->comment = request('add_comment');
+        $comment->post_id = $id;
+        $comment->user_id = Auth::user()->id;
+        $comment->save();
+
+        $new_comment = Comment::where('id', $comment->id)->with('author')->first();
+
+        return redirect()->route('post.detail', ['id' => $comment->post_id]);
     }
 
 }

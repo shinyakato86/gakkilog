@@ -11426,12 +11426,21 @@ input[type=checkbox]:checked + .checkbox-01::before {
   border-bottom: 2px solid #ff8c00;
 }
 
-.tabBtn.is-active {
-  background-color: #ff8c00;
+.tabBtn {
+  display: block;
+  padding: 5px 10px;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  border: 1px solid transparent;
+  border-bottom-color: #9e9e9e;
+  background-color: #fff;
+  outline: none;
+  width: 50%;
 }
-
 .tabBtn.is-active {
-  background-color: #ff8c00;
+  background-color: #f0f8ff;
+  margin-bottom: -1px;
+  border-color: #9e9e9e #9e9e9e #fff;
 }
 
 .tabContent_item {
@@ -11458,4 +11467,88 @@ input[type=checkbox]:checked + .checkbox-01::before {
   font-size: 1.4rem;
   border-bottom: 2px solid #cecece;
   padding: 15px;
+}
+
+.drop-zone {
+  position: relative;
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+  background-color: #eeeeee;
+  text-align: center;
+}
+.drop-zone .no-active {
+  display: none;
+}
+.drop-zone .drop-zone-text {
+  padding: 10px 0px;
+}
+.drop-zone .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  opacity: 0.8;
+  z-index: 100;
+}
+.drop-zone .overlay-text {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 33%;
+  color: #F7F7F7;
+}
+.drop-zone input {
+  display: none;
+}
+.drop-zone .select-file {
+  display: inline-block;
+  margin: 15px auto;
+  padding: 5px 15px;
+  font-size: 1.2rem;
+  background-color: #999;
+  border-radius: 5px;
+  color: #F7F7F7;
+  cursor: pointer;
+  z-index: 1;
+}
+.drop-zone .select-file::hover {
+  background-color: #136EB6;
+}
+
+.tabBtnArea {
+  display: flex;
+}
+.tabBtnArea > .tabBtn {
+  width: 50%;
+}
+
+.tabArea {
+  padding-bottom: 40px;
+}
+
+.commentArea {
+  padding-bottom: 20px;
+}
+
+.commentArea_item {
+  position: relative;
+  padding-top: 10px;
+}
+.commentArea_item::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 15px;
+  border-right: 8px solid transparent;
+  border-bottom: 14.6025px solid #eee;
+  border-left: 8px solid transparent;
+}
+.commentArea_item > div {
+  background: #eee;
+  padding: 8px;
+  border-radius: 5px;
+}
+.commentArea_item + .commentArea_name {
+  margin-top: 30px;
 }

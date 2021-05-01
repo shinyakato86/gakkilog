@@ -27,4 +27,6 @@ Route::get('/post', [App\Http\Controllers\PostController::class, 'list'])->name(
 
 Route::post('/post/create', [App\Http\Controllers\PostController::class, 'store'])->name('post.store');
 
-Route::get('/post/detail{id}', [App\Http\Controllers\PostController::class, 'show'])->name('post.detail');
+Route::get('/post/detail/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('post.detail');
+
+Route::post('/post/comment/{id}', [App\Http\Controllers\PostController::class, 'addComment'])->name('post.addComment');

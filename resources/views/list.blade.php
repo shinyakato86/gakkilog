@@ -39,18 +39,18 @@
         </div>
         <aside class="sideContent">
           {{ Form::open(['route' => 'post.list','method' => 'get']) }}
-            <ul class="">
-              <li class="p-sideItem p-sideItem--search">
-                <p class="p-sideItem__heading"><i class="material-icons">search</i> 検索 </p>
+            <ul class="sideContentList">
+              <li class="sideContentList_item">
+                <p class="sideContentList_title"><i class="material-icons">search</i> 検索 </p>
                 <div class="p-sideItem--search__keyword">
-                  <input type="text" name="keyword" placeholder="キーワードで検索する">
+                  <input type="text" class="input-02" name="keyword" placeholder="キーワードで検索する">
                 </div>
               </li>
-              <li class="p-sideItem p-sideItem--search">
-                <p class="p-sideItem__heading"><span class="material-icons">done_all</span> 好みで探す </p>
+              <li class="sideContentList_item">
+                <p class="sideContentList_title"><span class="material-icons">done_all</span> 好みで探す </p>
                 <div class="p-sideItem--search__select">
-                  <div class="c-selectBox">
-                    <select name="category_id">
+                  <div class="selectWrap">
+                    <select name="category_id" class="select-02">
                       <option value="">選択</option>
                         @foreach($categories as $value)
                           <option value="{{ $value->id }}">{{ $value->category_name }}</option>
@@ -59,7 +59,9 @@
                   </div>
                 </div>
               </li>
-              <li class="p-sideItem p-sideItem--btn"><button type="submit" class="c-primary__btn">検索する</button></li>
+              <li class="sideContentList_item">
+                <button type="submit" class="submitBtn fz-m mx-auto">検索する</button>
+              </li>
             </ul>
           {{ Form::close() }}
         </aside>

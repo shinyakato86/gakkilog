@@ -13,6 +13,10 @@
           <span class="material-icons mr-1">person</span>
           {{ $user_name->name }}
       </p>
+      <p class="d-flex align-items-center mr-5">
+        <span class="material-icons mr-1">schedule</span>
+        {{ $user_name->created_at->format('Y/m/d') }}
+      </p>
       <button class="btn-favo"><span class="material-icons">favorite</span>
         お気に入りに登録する
       </button>
@@ -44,6 +48,9 @@
     <h3 class="heading03 mt30">コメント一覧</h3>
 
     <div class="commentArea">
+    @if($comments->isEmpty())
+      <p class="error">{{$error_text}}</p>
+    @endif
 
       @foreach($comments as $comment)
       <p class="commentArea_name d-flex align-items-center">

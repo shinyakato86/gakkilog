@@ -30,3 +30,5 @@ Route::post('/post/create', [App\Http\Controllers\PostController::class, 'store'
 Route::get('/post/detail_{id}', [App\Http\Controllers\PostController::class, 'show'])->name('post.detail');
 
 Route::post('/post/comment_{id}', [App\Http\Controllers\PostController::class, 'addComment'])->name('post.addComment');
+
+Route::get('/users/mypage', [App\Http\Controllers\MypageController::class, 'index'])->name('mypage');

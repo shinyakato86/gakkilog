@@ -99,7 +99,9 @@ class PostController extends Controller
 
         $comments = Comment::with(['author'])->where('post_id', $id)->get();
 
-        return view('detail', compact('post', 'comments', 'user_name'));
+        $error_text = "コメントはありません";
+
+        return view('detail', compact('post', 'comments', 'user_name', 'error_text'));
     }
 
     /**
@@ -252,7 +254,7 @@ class PostController extends Controller
 
         $new_comment = Comment::where('id', $comment->id)->with('author')->first();
 
-        return redirect()->route('post.detail', 'error_text', ['id' => $comment->post_id]);
+        return redirect()->route('post.detail', ['id' => $comment->post_id]);
     }
 
 }

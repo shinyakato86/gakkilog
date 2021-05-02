@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class MypageController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+
+        $auths = Auth::user();
+
+        return view('mypage', compact('auths'));
     }
 }

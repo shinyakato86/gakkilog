@@ -15,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:500,600,600i,700|Noto+Sans+JP:400,500,700&display=swap" id="gwebfont">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+  <script src='{{ asset("js/likes.js") }}' defer></script>
   <script src='{{ asset("js/app.js") }}' defer></script>
   <script src='{{ asset("js/script.js") }}' defer></script>
 </head>
@@ -28,6 +29,7 @@
           </a>
         </p>
           <ul class="headerNavList js-headerNavList">
+          <a class="btn-secondary btn" href="{{ route('mypage') }}">{{ __('マイページ') }}</a>
           <a class="btn-secondary btn" href="{{ route('post.new') }}">{{ __('投稿') }}</a>
             <!-- Authentication Links -->
             @guest

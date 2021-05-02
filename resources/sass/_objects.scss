@@ -66,6 +66,27 @@
   }
 }
 
+.heading04 {
+  position: relative;
+  font-weight: bold;
+  font-size: 1.8rem;
+  letter-spacing: 0.2rem;
+  padding-left: 1.6rem;
+  margin-bottom: 20px;
+  margin-top: 15px;
+  &::before {
+    content: "";
+    background-color: $color_main;
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+  }
+}
+
 .formArea {
   max-width: 720px;
   width: 90%;
@@ -207,6 +228,17 @@ input[type="checkbox"]:checked+.checkbox-01::before{
   &:last-of-type {
     margin-right: 0;
   }
+}
+
+.newPostArea_item-02 {
+  width: calc((100% - 30px) / 3);
+  margin-right: 15px;
+  &:nth-of-type(3n) {
+    margin-right: 0;
+  }
+  &:nth-of-type(n+4) {
+    margin-top: 15px;
+  } 
 }
 
 .section-search {
@@ -447,5 +479,81 @@ input {
   }
   & + .commentArea_name  {
     margin-top: 30px;
+  }
+}
+
+.btn-favo {
+  display: flex;
+  align-items: center;
+  border: 1px solid #f06292;
+  background: #fff;
+  color: #f06292;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 2px 10px;
+}
+
+.newPostArea_text {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.newPostArea_link {
+  box-shadow: 0 0 2px rgb(0, 0, 0, 18%);
+  position: relative;
+  display: block;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.newPostArea_title {
+  color: #333;
+  margin-bottom: 3px;
+}
+
+.newPostArea_cat {
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #666;
+  padding: 3px 5px;
+  color: #666;
+  display: inline-block;
+}
+
+.newPostArea_content {
+  padding: 10px 15px;
+  background: #fff;
+}
+
+.newPostArea_img {
+  max-height: 160px;
+  > img {
+    max-height: 160px;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.btn-01 {
+  margin: 3rem auto 0;
+  max-width: 240px;
+  background-color: $color_main;
+  border: 2px solid $color_main;
+  border-radius: 5px;
+  color: #fff;
+  display: block;
+  font-size: 1.6rem;
+  padding: .5rem 2rem;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  transition: .2s;
+  &:hover {
+    text-decoration: none;
+    color: $color_main;
+    background-color: #fff;
   }
 }

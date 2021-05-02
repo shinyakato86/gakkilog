@@ -13,7 +13,7 @@
       </div>
         <div class="page-searchForm">
 
-          <form action="" method="GET">
+          {{ Form::open(['route' => 'post.list','method' => 'get']) }}
             <div class="searchArea_keyword">
               <input type="text" name="keyword" placeholder="キーワードで検索する" class="input-01">
             </div>
@@ -32,7 +32,7 @@
             <div class="page-searchForm__btn">
               <button type="submit" class="searchBtn">検索する</button> 
             </div>
-          </form>
+          {{ Form::close() }}
 
         </div>
       </div>
@@ -48,69 +48,26 @@
       </div>
       <div class="newPostArea">
 
-      <article class="newPostArea_item">
-          <a href="" class="newPostArea_link">
-            <div class="newPostArea_img">
-              <img src="{{ asset('images\test.png') }}" alt="image">
-            </div>
-            <div class="newPostArea__content">
-              <p class="newPostArea_title">タイトル</p>
-              <p class="newPostArea_text">詳細テキスト</p>
-              <div class="newPostArea_catWrap">
-                <p class="newPostArea_cat">カテゴリー</p>
-              </div>
-            </div>
-          </a>
-        </article>
-
+        @foreach($posts as $post)
         <article class="newPostArea_item">
-          <a href="" class="newPostArea_link">
+          <a href="{{ route('post.detail', ['id' =>  $post->id]) }}" class="newPostArea_link">
             <div class="newPostArea_img">
-              <img src="{{ asset('images\test.png') }}" alt="image">
+              <img src="../uploads/{{ $post->detail_img }}" alt="image">
             </div>
-            <div class="newPostArea__content">
-              <p class="newPostArea_title">タイトル</p>
-              <p class="newPostArea_text">詳細テキスト</p>
+            <div class="newPostArea_content">
+              <p class="newPostArea_title">{{ htmlspecialchars( str_limit($post->detail_name, $limit = 24, $end = '...') ) }}</p>
+              <p class="newPostArea_text">{{ htmlspecialchars( str_limit($post->detail_detail, $limit = 54, $end = '...') ) }}</p>
               <div class="newPostArea_catWrap">
-                <p class="newPostArea_cat">カテゴリー</p>
+                <p class="newPostArea_cat">{{ $post->category->category_name }}</p>
               </div>
             </div>
           </a>
         </article>
-
-        <article class="newPostArea_item">
-          <a href="" class="newPostArea_link">
-            <div class="newPostArea_img">
-              <img src="{{ asset('images\test.png') }}" alt="image">
-            </div>
-            <div class="newPostArea__content">
-              <p class="newPostArea_title">タイトル</p>
-              <p class="newPostArea_text">詳細テキスト</p>
-              <div class="newPostArea_catWrap">
-                <p class="newPostArea_cat">カテゴリー</p>
-              </div>
-            </div>
-          </a>
-        </article>
-
-        <article class="newPostArea_item">
-          <a href="" class="newPostArea_link">
-            <div class="newPostArea_img">
-              <img src="{{ asset('images\test.png') }}" alt="image">
-            </div>
-            <div class="newPostArea__content">
-              <p class="newPostArea_title">タイトル</p>
-              <p class="newPostArea_text">詳細テキスト</p>
-              <div class="newPostArea_catWrap">
-                <p class="newPostArea_cat">カテゴリー</p>
-              </div>
-            </div>
-          </a>
-        </article>
+        @endforeach
 
       </div>
       <div class="page-new__btnWrap">
-        <a href="" class="c-primary__btn">一覧を見る</a>
+        <a href="{{ route('post.list') }}" class="btn-01 mt-5">一覧を見る</a>
       </div>
     </div>
   </section>

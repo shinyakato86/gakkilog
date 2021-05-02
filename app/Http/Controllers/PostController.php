@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -25,76 +27,12 @@ class PostController extends Controller
     public function index(Request $request)
     {
 
-        $time = new Carbon(Carbon::now());
-        $year =  $time ->__get('year');
-        $month = $time ->__get('month');
-
-        $users = \DB::table('users')->pluck('name');
-
-
-      if ($request->filled('seach_year') && $request->filled('seach_month') && $request->filled('seach_user')) {
-
-        $keyword1 = $request->input('seach_year');
-        $keyword2 = $request->input('seach_month');
-        $keyword3 = $request->input('seach_user');
-
-        $projectlist = Projectlist::whereYear('created_at', $keyword1)->whereMonth('created_at', $keyword2)
-        ->where('author_name', $keyword3)->orderBy('created_at', 'asc')->get();
-
-      } elseif ($request->filled('seach_year') && $request->filled('seach_month')) {
-
-        $keyword1 = $request->input('seach_year');
-        $keyword2 = $request->input('seach_month');
-        $keyword3 = null;
-
-        $projectlist = Projectlist::whereYear('created_at', $keyword1)->whereMonth('created_at', $keyword2)->orderBy('created_at', 'asc')->get();
-
-      } elseif ($request->filled('seach_year') && $request->filled('seach_user')) {
-
-        $keyword1 = $request->input('seach_year');
-        $keyword2 = null;
-        $keyword3 = $request->input('seach_user');
-
-        $projectlist = Projectlist::whereYear('created_at', $keyword1)->where('author_name', $keyword3)->orderBy('created_at', 'asc')->get();
-
-      } elseif ($request->filled('seach_year')) {
-
-        $keyword1 = $request->input('seach_year');
-        $keyword2 = null;
-        $keyword3 = null;
-
-        $projectlist = Projectlist::whereYear('created_at', $keyword1)->orderBy('created_at', 'asc')->get();
-
-      } elseif ($request->filled('seach_month')) {
-
-        $keyword1 = null;
-        $keyword2 = $request->input('seach_month');
-        $keyword3 = null;
-
-
-        $projectlist = Projectlist::whereMonth('created_at', $keyword2)->orderBy('created_at', 'asc')->get();
-
-      } elseif ($request->filled('seach_user')) {
-
-        $keyword1 = null;
-        $keyword2 = null;
-        $keyword3 = $request->input('seach_user');
-
-        $projectlist = Projectlist::where('author_name', $keyword3)->orderBy('created_at', 'asc')->get();
-
-      } else {
-
-        $keyword1 = $year;
-        $keyword2 = $month;
-        $keyword3 = null;
-
-        $projectlist = Projectlist::whereYear('created_at', $keyword1)->whereMonth('created_at', $keyword2)->orderBy('created_at', 'asc')
-        ->get();
-          }
+        $posts = Post::latest()->limit(4)->get();
+        $ctegories = Category::with(['posts'])->where('id')->get();
 
         $error_text = "検索結果がありません。";
 
-        return view('show', compact('projectlist', 'users', 'year', 'month', 'error_text', 'keyword1', 'keyword2', 'keyword3'));
+        return view('index', compact('posts', 'ctegories'));
     }
 
     /**
@@ -158,7 +96,12 @@ class PostController extends Controller
     {
         $post = post::find($id);
 
-        return view('detail', compact('post'));
+        $user_id = Post::where('id', $id)->pluck('user_id');
+        $user_name = User::where('id', $user_id)->first();
+
+        $comments = Comment::with(['author'])->where('post_id', $id)->get();
+
+        return view('detail', compact('post', 'comments', 'user_name'));
     }
 
     /**
@@ -248,7 +191,41 @@ class PostController extends Controller
      */
     public function list(Request $request)
     {
-      return view('list');
+
+      $posts = Post::orderBy('created_at', 'desc')->get();
+      $categories = Category::all();
+
+
+      if ($request->filled('keyword')) {
+
+          $key = $request->input('keyword');
+
+          $key = str_replace('　', ' ', $key);
+          $key = preg_replace('/\s(?=\s)/', '', $key);
+          $key = trim($key);
+          $key = str_replace(['\\', '%', '_'], ['\\\\', '\%', '\_'], $key);
+          $keywords = array_unique(explode(' ', $key));
+
+          $query = Post::query();
+          foreach($keywords as $keyword) {
+              $query->where(function($_query) use($keyword){
+                  $_query->where('detail_name', 'LIKE', '%'.$keyword.'%')
+                         ->orwhere('detail_maker', 'LIKE', '%'.$keyword.'%')
+                         ->orwhere('detail_detail', 'LIKE', '%'.$keyword.'%')
+                         ->orwhere('detail_comment', 'LIKE', '%'.$keyword.'%');
+              });
+          }
+          $posts = $query->paginate(12);
+
+      } elseif ($request->filled('category_id')) {
+
+        $keyword2 = $request->input('category_id');
+
+        $posts = Post::where('category_id', $keyword2)->orderBy('created_at', 'desc')->get();
+
+      }
+
+      return view('list', compact('posts', 'categories'));
     }
 
     /**
@@ -269,7 +246,7 @@ class PostController extends Controller
      * @param AddComment $request
      * @return \Illuminate\Http\Response
      */
-    public function addComment(AddComment $request, $id)
+    public function addComment(Request $request, $id)
     {
         $comment = new Comment();
         $comment->comment = request('add_comment');

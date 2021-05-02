@@ -8,8 +8,16 @@
       <h2 class="heading02">{{ $post->detail_name }}</h2>
     </div>
     <p class="w-50 mx-auto"><img src="../uploads/{{ $post->detail_img }}" alt=""></p>
-
-    <div class="infoArea mt40">
+    <div class="d-flex mt20">
+      <p class="commentArea_name d-flex align-items-center mr-5">
+          <span class="material-icons mr-1">person</span>
+          {{ $user_name->name }}
+      </p>
+      <button class="btn-favo"><span class="material-icons">favorite</span>
+        お気に入りに登録する
+      </button>
+    </div>
+    <div class="infoArea mt30">
 
       <table class="table-01">
         <tbody>
@@ -37,30 +45,30 @@
 
     <div class="commentArea">
 
-    <p class="commentArea_name d-flex align-items-center">
-      <span class="material-icons mr-1">face</span>投稿者名</p>
-      <div class="commentArea_item">
-        <div>
-          <p>コメントです。</p>
-        </div>
-      </div>
-
+      @foreach($comments as $comment)
       <p class="commentArea_name d-flex align-items-center">
-      <span class="material-icons mr-1">face</span>投稿者名</p>
+        <span class="material-icons mr-1">face</span>
+        {{ $comment->author->name }}
+      </p>
       <div class="commentArea_item">
         <div>
-          <p>コメントです。</p>
+          <p>{{ $comment->comment }}</p>
         </div>
       </div>
+      @endforeach
 
     </div>
 
+    <h4 class="heading04">コメント投稿</h4>
+
     {{ Form::open(['route' => ['post.addComment', $post->id]]) }}
-        <textarea class="form-control mb-3" name='add_comment' placeholder="コメント入力" rows="3">{{ old('add_comment') }}</textarea>
+        <textarea class="input-01" name='add_comment' placeholder="コメント入力" cols="30" rows="3">{{ old('add_comment') }}</textarea>
         @foreach ($errors->all() as $error)
         <p class="errorText">※{{ $error }}</p>
         @endforeach
-        <button class="btn btn-info btn-block mt-5" type="submit">コメント投稿</button>
+        <div class="d-flex justify-content-center mt-5">
+          {{ Form::submit('コメントを投稿する', ['class' => 'submitBtn']) }}
+        </div>
     {{ Form::close() }}
 
 

@@ -13,6 +13,10 @@
         <div class="archiveContent">
           <div class="newPostArea">
 
+          @if($posts->isEmpty())
+            <p class="error">{{$error_text}}</p>
+          @endif
+
           @foreach($posts as $post)
             <article class="newPostArea_item-02">
               <a href="{{ route('post.detail', ['id' =>  $post->id]) }}" class="newPostArea_link">

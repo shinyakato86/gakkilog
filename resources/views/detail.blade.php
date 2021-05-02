@@ -41,7 +41,7 @@
       </table>
 
     </div>
-    <h3 class="heading03 mt30">コメント</h3>
+    <h3 class="heading03 mt30">コメント一覧</h3>
 
     <div class="commentArea">
 

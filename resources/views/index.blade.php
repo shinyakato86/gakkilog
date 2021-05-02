@@ -20,12 +20,11 @@
             <div class="searchArea_category">
                 <p class="searchArea_title">カテゴリーで探す</p>
                 <div class="selectWrap">
-                  <select name="category_id" class="select-01">
+                  <select name="category_id" class="input-01">
                     <option value="">選択</option>
-                    <option value="">カテゴリー</option>
-                    <option value="">カテゴリー</option>
-                    <option value="">カテゴリー</option>
-                    <option value="">カテゴリー</option>
+                      @foreach($categories as $value)
+                        <option value="{{ $value->id }}">{{ $value->category_name }}</option>
+                      @endforeach
                   </select>
                 </div>
             </div>

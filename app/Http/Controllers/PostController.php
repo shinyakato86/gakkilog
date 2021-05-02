@@ -28,11 +28,9 @@ class PostController extends Controller
     {
 
         $posts = Post::latest()->limit(4)->get();
-        $ctegories = Category::with(['posts'])->where('id')->get();
+        $categories = Category::all();
 
-        $error_text = "検索結果がありません。";
-
-        return view('index', compact('posts', 'ctegories'));
+        return view('index', compact('posts', 'categories'));
     }
 
     /**
@@ -192,40 +190,38 @@ class PostController extends Controller
     public function list(Request $request)
     {
 
-      $posts = Post::orderBy('created_at', 'desc')->get();
       $categories = Category::all();
-
+      $error_text = "該当する投稿がありません";
 
       if ($request->filled('keyword')) {
 
-          $key = $request->input('keyword');
+        $key = $request->input('keyword');
 
-          $key = str_replace('　', ' ', $key);
-          $key = preg_replace('/\s(?=\s)/', '', $key);
-          $key = trim($key);
-          $key = str_replace(['\\', '%', '_'], ['\\\\', '\%', '\_'], $key);
-          $keywords = array_unique(explode(' ', $key));
+        $key = str_replace('　', ' ', $key);
+        $key = preg_replace('/\s(?=\s)/', '', $key);
+        $key = trim($key);
+        $key = str_replace(['\\', '%', '_'], ['\\\\', '\%', '\_'], $key);
+        $keywords = array_unique(explode(' ', $key));
 
-          $query = Post::query();
-          foreach($keywords as $keyword) {
-              $query->where(function($_query) use($keyword){
-                  $_query->where('detail_name', 'LIKE', '%'.$keyword.'%')
-                         ->orwhere('detail_maker', 'LIKE', '%'.$keyword.'%')
-                         ->orwhere('detail_detail', 'LIKE', '%'.$keyword.'%')
-                         ->orwhere('detail_comment', 'LIKE', '%'.$keyword.'%');
-              });
-          }
-          $posts = $query->paginate(12);
+        $query = Post::query();
+        foreach($keywords as $keyword) {
+            $query->where(function($_query) use($keyword){
+                $_query->where('detail_name', 'LIKE', '%'.$keyword.'%')
+                        ->orwhere('detail_maker', 'LIKE', '%'.$keyword.'%')
+                        ->orwhere('detail_detail', 'LIKE', '%'.$keyword.'%')
+                        ->orwhere('detail_comment', 'LIKE', '%'.$keyword.'%');
+            });
+        }
+        $posts = $query->paginate(12);
 
       } elseif ($request->filled('category_id')) {
-
         $keyword2 = $request->input('category_id');
-
         $posts = Post::where('category_id', $keyword2)->orderBy('created_at', 'desc')->get();
-
+      } else {
+        $posts = Post::orderBy('created_at', 'desc')->get();
       }
 
-      return view('list', compact('posts', 'categories'));
+      return view('list', compact('posts', 'categories', 'error_text'));
     }
 
     /**
@@ -256,7 +252,7 @@ class PostController extends Controller
 
         $new_comment = Comment::where('id', $comment->id)->with('author')->first();
 
-        return redirect()->route('post.detail', ['id' => $comment->post_id]);
+        return redirect()->route('post.detail', 'error_text', ['id' => $comment->post_id]);
     }
 
 }

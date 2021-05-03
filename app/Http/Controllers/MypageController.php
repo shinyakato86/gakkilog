@@ -49,15 +49,11 @@ class MypageController extends Controller
         $auth_id = Auth::id();
         $user= User::find($auth_id);
 
-        $auths = Auth::user();
-
         $user->name = request('user_name');
         $user->email = request('user_email');
         $user->save();
 
-        $posts = Post::where('user_id', $auth_id)->get();
-
-        return view('mypage', compact('posts','auths'));
+        return redirect('/users/mypage');
     }
 
     public function delete_check(Request $request)

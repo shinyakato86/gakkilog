@@ -32,3 +32,11 @@ Route::get('/post/detail_{id}', [App\Http\Controllers\PostController::class, 'sh
 Route::post('/post/comment_{id}', [App\Http\Controllers\PostController::class, 'addComment'])->name('post.addComment');
 
 Route::get('/users/mypage', [App\Http\Controllers\MypageController::class, 'index'])->name('mypage');
+
+Route::get('/users/mypage/edit', [App\Http\Controllers\MypageController::class, 'edit'])->name('mypage.edit');
+
+Route::post('/users/mypage/update', [App\Http\Controllers\MypageController::class, 'update'])->name('mypage.update');
+
+Route::get('/users/mypage/delete_check', [App\Http\Controllers\MypageController::class, 'delete_check'])->name('mypage.delete_check');
+
+Route::post('/users/mypage/delete', [App\Http\Controllers\MypageController::class, 'delete'])->name('mypage.delete');

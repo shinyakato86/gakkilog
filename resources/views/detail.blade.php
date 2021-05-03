@@ -11,11 +11,11 @@
     <div class="d-flex mt20">
       <p class="commentArea_name d-flex align-items-center mr-5">
           <span class="material-icons mr-1">person</span>
-          {{ $user_name->name }}
+          {{ $post->users->name }}
       </p>
       <p class="d-flex align-items-center mr-5">
         <span class="material-icons mr-1">schedule</span>
-        {{ $user_name->created_at->format('Y/m/d') }}
+        {{ $post->users->created_at->format('Y/m/d') }}
       </p>
       <button class="btn-favo"><span class="material-icons">favorite</span>
         お気に入りに登録する

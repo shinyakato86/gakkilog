@@ -9,7 +9,7 @@ class Like extends Model
 {
   protected $fillable = ['illustration_id','user_id'];
 
-  public function user()
+  public function users()
   {
     return $this->belongsTo(User::class);
   }

@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    public function user()
+    public function users()
     {
-        return $this->belongsTo('App/Models/User');
+        return $this->belongsTo('App\Models\User', 'user_id', 'id', 'users', 'post_id');
     }
 
     public function category(){

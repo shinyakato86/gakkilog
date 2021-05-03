@@ -15,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:500,600,600i,700|Noto+Sans+JP:400,500,700&display=swap" id="gwebfont">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/object-fit-images/3.2.4/ofi.min.js"></script>
   <script src='{{ asset("js/likes.js") }}' defer></script>
   <script src='{{ asset("js/app.js") }}' defer></script>
   <script src='{{ asset("js/script.js") }}' defer></script>

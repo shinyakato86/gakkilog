@@ -10,28 +10,27 @@
         <p class="heading02-sub">マイページ</p>
       </div>
       <div class="showFlexArea">
-      <div class="profileContent">
-        <div class="myprofile mb40">
-          <div class="c-profile__img">
-            <img src="/images/noimage.jpg" alt="image" class="noimage">
-          </div>
-          <div class="myprofile_content">
-            <h2 class="myprofile_name">名前：{{ $auths->name }}</h2>
-            <p class="myprofile_email">メールアドレス：{{ $auths->email }}</p>
-          </div>
+      <div class="registContent">
+          {{ Form::open(['route' => 'mypage.update']) }}
+            <div class="registBlock">
+              <div class="registBlock_item">
+                <p class="registBlock_text">名前</p>
+                <input class="input-01" type="text" name="user_name" placeholder="" value="{{ $auth->name }}" required="">
+              </div>
+              <div class="registBlock_item">
+                <p class="registBlock_text">メールアドレス</p>
+                <input class="input-01" type="email" name="user_email" placeholder="" value="{{ $auth->email }}" required="">
+              </div>
+
+            </div>
+
+            <div class="d-flex justify-content-center mt40">
+              {{ Form::submit('変更する', ['class' => 'submitBtn']) }}
+            </div>
+          {{ Form::close() }}
         </div>
-        <div class="profileArchive">
-          <h3 class="heading03">投稿一覧</h3>
-          <ul class="profileArchive_list">
 
-          @foreach($posts as $post)
-            <li class="profileArchive_item"><span class="material-icons">navigate_next</span><a class="profileArchive_link" href="/post/detail_{{ $post->id}}">{{ $post->detail_name }}</a></li>
-          @endforeach
-
-          </ul>
-        </div> 
-      </div>
-      <aside class="sideContent">
+        <aside class="sideContent">
           <ul class="p-sideContent">
             <li class="sideItem_item">
               <div class="p-sideItem--profile__box">
@@ -62,9 +61,10 @@
             </li>
           </ul>
         </aside>
+
+        </div>
       </div>
     </div>
-  </div>
-</main>
+  </main>
 
 @endsection

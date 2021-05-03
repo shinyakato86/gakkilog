@@ -6,14 +6,14 @@
   <div class="contentsArea">
     <div class="l-content-lg">
        <div class="heading02Wrap">
-        <h2 class="heading02">MUSICAL INSTRUMENT</h2>
-        <p class="heading02-sub">観光スポット登録</p>
+        <h2 class="heading02">NEW POST</h2>
+        <p class="heading02-sub">新規投稿</p>
       </div>
 
       <div class="showFlexArea">
 
         <div class="registContent">
-          {{ Form::open(['route' => 'post.store', 'id' => 'uriage_form','enctype'=>'multipart/form-data']) }}
+          {{ Form::open(['route' => 'post.store', 'enctype'=>'multipart/form-data']) }}
             <div class="registBlock">
               <div class="registBlock_item">
                 <p class="registBlock_text">メーカー</p>
@@ -70,41 +70,32 @@
 
         <aside class="sideContent">
           <ul class="p-sideContent">
-            <li class="p-sideItem p-sideItem--profile">
-              <div class="p-sideItem--profile__box"> <a href="http://gunma-ramenlog.herokuapp.com/users/mypage" class="p-sideItem--profile__link">
-          <span class="material-icons">account_box</span>
-          マイページ
-        </a> </div>
+            <li class="sideItem_item">
+              <div class="p-sideItem--profile__box">
+                <a href="{{ route('mypage') }}" class="sideItem_link">
+                <span class="material-icons">account_box</span>
+                マイページ</a>
+              </div>
             </li>
-            <li class="p-sideItem p-sideItem--profile">
-              <div class="p-sideItem--profile__box"> <a href="http://gunma-ramenlog.herokuapp.com/shops/create" class="p-sideItem--profile__link">
-          <span class="material-icons">store</span>
-          ラーメン屋を登録する
-        </a> </div>
+            <li class="sideItem_item">
+              <div class="p-sideItem--profile__box">
+                <a href="{{ route('post.new') }}" class="sideItem_link"><span class="material-icons">message</span>
+                楽器のレビューを投稿する</a>
+              </div>
             </li>
-            <li class="p-sideItem p-sideItem--profile">
-              <div class="p-sideItem--profile__box"> <a href="http://gunma-ramenlog.herokuapp.com/review/create" class="p-sideItem--profile__link">
-          <span class="material-icons">message</span>
-          口コミを投稿する
-        </a> </div>
+            <li class="sideItem_item">
+              <div class="p-sideItem--profile__box">
+                  <a href="{{ route('mypage.edit') }}" class="sideItem_link"><i class="material-icons">edit</i>
+                  登録情報を編集する
+                </a>
+              </div>
             </li>
-            <li class="p-sideItem p-sideItem--profile">
-              <div class="p-sideItem--profile__box"> <a href="http://gunma-ramenlog.herokuapp.com/users/mypage/edit" class="p-sideItem--profile__link">
-          <i class="material-icons">edit</i>
-          プロフィールを編集する
-        </a> </div>
-            </li>
-            <li class="p-sideItem p-sideItem--profile">
-              <div class="p-sideItem--profile__box"> <a href="http://gunma-ramenlog.herokuapp.com/password/reset" class="p-sideItem--profile__link">
-          <span class="material-icons">vpn_key</span>
-          パスワード変更
-        </a> </div>
-            </li>
-            <li class="p-sideItem p-sideItem--profile">
-              <div class="p-sideItem--profile__box"> <a href="http://gunma-ramenlog.herokuapp.com/deactive" class="p-sideItem--profile__link">
-          <span class="material-icons">follow_the_signs</span>
-          退会
-        </a> </div>
+            <li class="sideItem_item">
+              <div class="p-sideItem--profile__box">
+                <a href="{{ route('mypage.delete_check') }}" class="sideItem_link "><span class="material-icons">follow_the_signs</span>
+                退会
+                </a>
+            </div>
             </li>
           </ul>
         </aside>

@@ -248,20 +248,20 @@ input[type="checkbox"]:checked+.checkbox-01::before{
 .sideContent {
   background: #fff;
   box-shadow: 0 2px 4px rgb(0 0 0 / 12%);
-  width: 20%;
+  width: 22%;
   padding: 15px;
 }
 
 .archiveContent {
-  width: 75%;
+  width: 73%;
 }
 
 .profileContent {
-  width: 75%;
+  width: 73%;
 }
 
 .registContent {
-  width: 75%;
+  width: 73%;
 }
 
 .searchList {
@@ -560,10 +560,10 @@ input {
 }
 
 .newPostArea_img {
-  max-height: 160px;
+  height: 160px;
   position: relative;
   > img {
-    max-height: 160px;
+    height: 160px;
     width: 100%;
     object-fit: cover;
   }
@@ -643,8 +643,11 @@ input {
   font-size: 1.2rem;
   position: relative;
   padding: 10px 10px 10px 30px;
+  color: #333;
   &:hover {
+    color: #333;
     text-decoration: none;
+    opacity: 0.8;
   }
   .material-icons {
     position: absolute;
@@ -657,4 +660,63 @@ input {
 
 .sideItem_item {
   list-style-type: none;
+}
+
+.howBlock {
+  display: flex;
+}
+
+.howBlock_item {
+  display: flex;
+  justify-content: center;
+  width: calc((100% - 30px) / 3);
+  margin-right: 15px;
+  &:nth-of-type(3n) {
+    margin-right: 0;
+  }
+}
+
+.myprofile {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 12%);
+}
+
+.myprofile_name {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.myprofile_email {
+  font-size: 1.6rem;
+}
+
+.profileArchive_item {
+  list-style-type: none;
+  padding-left: 25px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  & + & {
+    margin-top: 15px;
+  }
+  .material-icons {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    color: #ff8c00;
+  }
+}
+
+.profileArchive_link {
+  text-decoration: none;
+  color: #333;
+  &:hover {
+    opacity: 0.8;
+    color: #333;
+    text-decoration: none;
+  }
 }

@@ -87,21 +87,21 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ifrojectlist  $projectlist
+     * @param  \App\projectlist  $projectlist
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $post = post::find($id);
 
-        $user_id = Post::where('id', $id)->pluck('user_id');
-        $user_name = User::where('id', $user_id)->first();
+        /*$user_id = Post::where('id', $id)->pluck('user_id');
+        $user_name = User::where('id', $user_id)->first();*/
 
         $comments = Comment::with(['author'])->where('post_id', $id)->get();
 
         $error_text = "コメントはありません";
 
-        return view('detail', compact('post', 'comments', 'user_name', 'error_text'));
+        return view('detail', compact('post', 'comments', 'error_text'));
     }
 
     /**

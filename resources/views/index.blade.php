@@ -78,25 +78,26 @@
         <p class="heading02-sub">できること</p>
       </div>
       <p class="leadText ta-center">レビューや写真で見つけよう！</p>
-      <div class="page-support__search">
-        <div class="c-searchContent">
-          <h3 class="heading03">カテゴリーで探す</h3>
-          <ul class="categoryList">
-            <li class="categoryList_item">
-              <a href="" class="c-searchContent__link">ラーメン</a>
-            </li>
-            <li class="categoryList_item">
-              <a href="" class="c-searchContent__link">ラーメン</a>
-            </li>
-            <li class="categoryList_item">
-              <a href="" class="c-searchContent__link">ラーメン</a>
-            </li>
-            <li class="categoryList_item">
-              <a href="" class="c-searchContent__link">ラーメン</a>
-            </li>
-          </ul>
+
+      <div class="howBlock">
+
+        <div class="howBlock_item">
+          <h4 class="heading04">1. 会員登録しよう</h4>
+          <span class="material-icons">
+          how_to_reg
+          </span>
         </div>
+        <div class="howBlock_item">
+
+        </div>
+        <div class="howBlock_item">
+
+        </div>
+
       </div>
+
+
+
     </div>
   </section>
 

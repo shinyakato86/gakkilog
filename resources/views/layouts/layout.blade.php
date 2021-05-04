@@ -30,20 +30,21 @@
           </a>
         </p>
           <ul class="headerNavList js-headerNavList">
-          <a class="btn-secondary btn" href="{{ route('mypage') }}">{{ __('マイページ') }}</a>
-          <a class="btn-02" href="{{ route('post.new') }}">{{ __('投稿') }}</a>
+          <a class="btn-02" href="{{ route('post.new') }}">{{ __('レビュー投稿') }}</a>
             <!-- Authentication Links -->
             @guest
-            <li class="headerNavList_item"> <a class="btn mr-3" href="{{ route('login') }}">{{ __('ログイン') }}</a> </li>
-            @if (Route::has('register'))
-            <li class="headerNavList_item"> <a class="btn-secondary btn" href="{{ route('register') }}">{{ __('会員登録') }}</a> </li>
-            @endif @else
+            <li class="headerNavList_item-02">
+              <p class="headerNavList_linkwrap"><a class="headerNavList_link" href="{{ route('login') }}">{{ __('ログイン') }}</a></p>
+              <p class="headerNavList_linkwrap"><a class="headerNavList_link" href="{{ route('register') }}">{{ __('会員登録') }}</a></p>
+            </li>
+            @else
             <li class="headerNavList_item d-flex"> 
-              <div class="headerNavList_item" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+              <div class="headerNavList_item-02" aria-labelledby="navbarDropdown">
+              <p class="headerNavList_linkwrap"><a class="headerNavList_link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                 {{ __('ログアウト') }}
-                </a>
+                </a></p>
+                <p class="headerNavList_linkwrap"><a class="headerNavList_link" href="{{ route('mypage') }}">{{ __('マイページ') }}</a></p>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
               </div>
             </li> @endguest </ul>
@@ -56,7 +57,8 @@
       </p>
       </nav>
     </div>
-  </header> @yield('content')
+  </header>
+  @yield('content')
   <footer class="footer">
     <div class="footer_inner"> <small class="footer_copy">このページは架空のサービスです。実在の団体・人物とは関係ありません。<br>Copyright© shinya kato</small> </div>
   </footer>

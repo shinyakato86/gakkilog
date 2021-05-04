@@ -12,7 +12,7 @@
       <div class="showFlexArea">
       <div class="profileContent">
         <div class="myprofile mb40">
-          <div class="c-profile__img">
+          <div class="myprofile_img">
           <span class="material-icons">
             face
           </span>
@@ -23,13 +23,13 @@
           </div>
         </div>
         <div class="profileArchive">
-          <h3 class="heading03">投稿一覧</h3>
+          <h3 class="heading03">投稿したレビュー</h3>
           <ul class="profileArchive_list">
 
           @if($posts->isEmpty())
             <p class="error">{{$error_text}}</p>
           @endif
-          
+
           @foreach($posts as $post)
             <li class="profileArchive_item"><span class="material-icons">navigate_next</span><a class="profileArchive_link" href="/post/detail_{{ $post->id}}">{{ $post->detail_name }}</a></li>
           @endforeach

@@ -38,6 +38,38 @@
   }
 }
 
+.headerNavList_linkwrap {
+  & + & {
+    padding-left: 20px;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 1rem;
+      transform: translateY(-50%);
+      background: #797e93;
+      display: inline-block;
+      width: 1px;
+      height: 1.5rem;
+    }
+  }
+}
+
+.headerNavList_link {
+  font-size: 1.21rem;
+  color: #333;
+  &:hover {
+    color: #333;
+  }
+}
+
+.headerNavList_item-02 {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
 .headerSpMenuBtn {
   display: none;
   @include mq(s) {

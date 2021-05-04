@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostCreate;
 use App\Http\Requests\CommentCreate;
@@ -98,12 +99,17 @@ class PostController extends Controller
 
         /*$user_id = Post::where('id', $id)->pluck('user_id');
         $user_name = User::where('id', $user_id)->first();*/
+        $post_likes_count = Post::withCount('likes')->findOrFail($id)->likes_count;
+
+        $param = [
+            'post_likes_count' => $post_likes_count
+        ];
 
         $comments = Comment::with(['author'])->where('post_id', $id)->get();
 
         $error_text = "コメントはありません";
 
-        return view('detail', compact('post', 'comments', 'error_text'));
+        return view('detail', compact('post', 'comments', 'error_text', 'post_likes_count', 'param'));
     }
 
     /**
@@ -139,12 +145,22 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $comment = Comment::find($id);
+        $like = Like::where('post_id',$id)->get();
 
         $post->delete();
 
         if ($comment != null) {
           $comment->delete();
         }
+
+        if (!$like->isEmpty()) {
+            $like->each->delete();
+        }
+        
+        if (!$comment->isEmpty()) {
+            $comment->each->delete();
+        }
+
 
         return redirect('/posts');
     }

@@ -277,6 +277,9 @@ input[type="checkbox"]:checked+.checkbox-01::before{
   justify-content: space-between;
   flex-direction: row-reverse;
   align-items: flex-start;
+  @include mq(s) {
+    flex-direction: column-reverse;
+  }
 }
 
 .sideContent {
@@ -284,18 +287,28 @@ input[type="checkbox"]:checked+.checkbox-01::before{
   box-shadow: 0 2px 4px rgb(0 0 0 / 12%);
   width: 22%;
   padding: 15px;
+  @include mq(s) {
+    width: 100%;
+    padding: 10px;
+  }
 }
 
 .archiveContent {
   width: 73%;
+  @include mq(s) {
+    width: 100%;
+  }
 }
 
 .profileContent {
-  width: 73%;
+  @extend .archiveContent;
+  @include mq(s) {
+    margin-top: 20px;
+  }
 }
 
 .registContent {
-  width: 73%;
+  @extend .archiveContent;
 }
 
 .searchList {
@@ -352,6 +365,12 @@ input[type="checkbox"]:checked+.checkbox-01::before{
   &:hover {
     background-color: #fff;
     color: $color_main;
+  }
+}
+
+.registBlock {
+  @include mq(s) {
+    margin-top: 20px;
   }
 }
 
@@ -450,15 +469,41 @@ input[type="checkbox"]:checked+.checkbox-01::before{
   }
 }
 
+.commentArea_name {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+  @include mq(s) {
+    font-size: 1.4rem;
+    margin-right: 10px;
+  }
+}
+
+.commentArea_time {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+  @include mq(s) {
+    font-size: 1.4rem;
+    margin-right: 10px;
+  }
+}
+
 .btn-favo {
   display: flex;
   align-items: center;
-  border: 1px solid #f06292;
+  border: 1px solid #ffb6c1;
   background: #fff;
-  color: #f06292;
+  color: #ffb6c1;
   border-radius: 20px;
   cursor: pointer;
   padding: 2px 10px;
+  transition: .2s;
+  &.liked {
+    border: 1px solid #f06292;
+    background: #fff;
+    color: #f06292;
+  }
 }
 
 .newPostArea_text {
@@ -467,25 +512,22 @@ input[type="checkbox"]:checked+.checkbox-01::before{
   margin-bottom: 10px;
 }
 
-.newPostArea_link {
-  box-shadow: 0 0 2px rgb(0, 0, 0, 18%);
-  position: relative;
-  display: block;
-  &:hover {
-    text-decoration: none;
-  }
-}
-
 .newPostArea {
   display: flex;
   flex-wrap: wrap;
+  @include mq(s) {
+    margin-top: 30px;
+  }
 }
 
 .newPostArea_link {
   display: block;
+  box-shadow: 0 0 2px rgb(0, 0, 0, 18%);
+  position: relative;
   transition: all .3s;
   &:hover {
     opacity: 1;
+    text-decoration: none;
     transform: translateY(-3px);
     box-shadow: 0 3px 18px 3px rgb(0 0 0 / 8%);
   }
@@ -519,12 +561,36 @@ input[type="checkbox"]:checked+.checkbox-01::before{
 .newPostArea_item-02 {
   width: calc((100% - 30px) / 3);
   margin-right: 15px;
+  @include mq(s) {
+    width: calc((100% - 15px) / 2);    
+  }
   &:nth-of-type(3n) {
     margin-right: 0;
+    @include mq(s) {
+      margin-right: 15px;
+    }
+  }
+  &:nth-of-type(2n) {
+    @include mq(s) {
+      margin-right: 0;
+    }
   }
   &:nth-of-type(n+4) {
     margin-top: 15px;
-  } 
+  }
+  &:nth-of-type(n+3) {
+    @include mq(s) {
+      margin-top: 15px;
+    }
+  }
+  &:hover {
+    .newPostArea_img::before {
+      opacity: 1;
+    }
+    .newPostArea_img::after {
+      opacity: 1;
+    }
+  }
 }
 
 .newPostArea_title {
@@ -624,6 +690,10 @@ input[type="checkbox"]:checked+.checkbox-01::before{
     color: $color_main;
     background-color: #fff;
   }
+  @include mq(s) {
+    width: 100%;
+    display: block;
+  }
 }
 
 .sideContentList_title {
@@ -707,6 +777,9 @@ input[type="checkbox"]:checked+.checkbox-01::before{
   background: #fff;
   padding: 20px;
   box-shadow: 0 2px 4px rgb(0 0 0 / 12%);
+  @include mq(s) {
+    padding: 15px;
+  }
 }
 
 .myprofile_name {
@@ -794,10 +867,10 @@ input[type="checkbox"]:checked+.checkbox-01::before{
 }
 
 .detailImg {
-  width: 50%;
+  width: 70%;
   margin: 0 auto;
   @include mq(s) {
-    width: 80%;
+    width: 100%;
   }
 }
 
@@ -805,4 +878,9 @@ input[type="checkbox"]:checked+.checkbox-01::before{
   margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  @include mq(s) {
+    width: 100%;
+    justify-content: flex-start;
+  }
 }

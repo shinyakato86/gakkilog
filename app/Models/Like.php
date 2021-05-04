@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Like;
+
 
 class Like extends Model
 {
-  protected $fillable = ['illustration_id','user_id'];
+  protected $fillable = ['post_id','user_id'];
 
   public function users()
   {
@@ -16,7 +19,7 @@ class Like extends Model
 
   public function post()
   {
-    return $this->belongsTo(Illustration::class);
+    return $this->belongsTo(Post::class);
   }
 
 }

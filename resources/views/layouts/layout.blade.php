@@ -23,39 +23,39 @@
 <body>
   <header class="header">
     <div class="header_inner">
-      <nav class='headerNav'>
-        <p class="header_logo">
-          <a class='' href="{{ route('index') }}">
-            <img src="{{ asset('../images/headerLogo.png') }}">
-          </a>
-        </p>
-          <ul class="headerNavList js-headerNavList">
-          <a class="btn-02" href="{{ route('post.new') }}">{{ __('レビュー投稿') }}</a>
-            <!-- Authentication Links -->
-            @guest
-            <li class="headerNavList_item-02">
-              <p class="headerNavList_linkwrap"><a class="headerNavList_link" href="{{ route('login') }}">{{ __('ログイン') }}</a></p>
-              <p class="headerNavList_linkwrap"><a class="headerNavList_link" href="{{ route('register') }}">{{ __('会員登録') }}</a></p>
-            </li>
-            @else
-            <li class="headerNavList_item d-flex"> 
-              <div class="headerNavList_item-02" aria-labelledby="navbarDropdown">
-              <p class="headerNavList_linkwrap"><a class="headerNavList_link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                {{ __('ログアウト') }}
-                </a></p>
-                <p class="headerNavList_linkwrap"><a class="headerNavList_link" href="{{ route('mypage') }}">{{ __('マイページ') }}</a></p>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
-              </div>
-            </li> @endguest </ul>
-        <p class="headerSpMenuBtn js-headerSpMenuBtn">
+      <p class="header_logo">
+        <a class='' href="{{ route('index') }}">
+          <img src="{{ asset('../images/headerLogo.png') }}">
+        </a>
+      </p>
+      <nav class='headerNav js-headerNav'>
+        <ul class="headerNavList js-headerNavList">
+        <a class="btn-02" href="{{ route('post.new') }}">{{ __('レビュー投稿') }}</a>
+          <!-- Authentication Links -->
+          @guest
+          <li class="headerNavList_item-02">
+            <p class="headerNavList_linkwrap"><a class="headerNavList_link" href="{{ route('login') }}">{{ __('ログイン') }}</a></p>
+            <p class="headerNavList_linkwrap"><a class="headerNavList_link" href="{{ route('register') }}">{{ __('会員登録') }}</a></p>
+          </li>
+          @else
+          <li class="headerNavList_item"> 
+            <div class="headerNavList_item-02" aria-labelledby="navbarDropdown">
+            <p class="headerNavList_linkwrap"><a class="headerNavList_link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+              {{ __('ログアウト') }}
+              </a></p>
+              <p class="headerNavList_linkwrap"><a class="headerNavList_link" href="{{ route('mypage') }}">{{ __('マイページ') }}</a></p>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
+            </div>
+          </li> @endguest </ul>
+        </nav>
+      <p class="headerSpMenuBtn js-headerSpMenuBtn">
         <button class="headerSpMenuBtn_lines">
           <span class="headerSpMenuBtn_line"></span>
           <span class="headerSpMenuBtn_line"></span>
           <span class="headerSpMenuBtn_line"></span>
         </button>
-      </p>
-      </nav>
+        </p>
     </div>
   </header>
   @yield('content')

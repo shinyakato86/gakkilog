@@ -5,26 +5,9 @@ $(function(){
 	$('.js-headerSpMenuBtn').on('click', function(){
 
 		$(this).toggleClass('is-active');
-		$('.js-headerNavList').slideToggle(300);
+		$('.js-headerNav').slideToggle(300);
 
-		if($('.header').hasClass('is-active')) {
-			setTimeout(function(){
-				$('.header').removeClass('is-active');
-			},320);
-			}else {
-				$('.header').addClass('is-active');
-		}
 
-    if($('.js-spHeaderSearch').hasClass('is-active')) {
-			$('.js-spHeaderSearch').toggleClass('is-active');
-			$('.spHeaderSearch_text').text('検 索');
-		
-			if($('.js-spHeaderSearch').hasClass('is-active')) {
-				$('.spHeaderSearch_text').text('戻 る');
-			}
-
-			$('.js-searchBox').slideToggle(300);
-    }
 	});
 
 	// ウインドウ幅を変えるとメニュー閉じる

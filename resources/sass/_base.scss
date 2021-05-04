@@ -66,6 +66,7 @@ body {
   padding-top: 60px;
   @include mq(s) {
     font-family: $font_family;
+		padding-top: 50px;
   }
   @include mq(m) {
     font-family: $font_family;
@@ -79,6 +80,9 @@ main {
   padding: 70px 0 90px;
   &.index {
     padding: 0;
+  }
+	@include mq(s) {
+		padding: 40px 0 60px;
   }
 }
 

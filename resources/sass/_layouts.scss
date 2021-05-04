@@ -10,12 +10,20 @@
   width: 100%;
   z-index: 9;
   background-color: #fff;
+  @include mq(s) {
+    height: 50px;
+    padding: 0;
+  }
 }
 
 .header_inner {
   max-width: $width_max;
   margin: 0 auto;
   width: $width_base-l;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
 }
 
 .header_logo{
@@ -29,19 +37,41 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @include mq(s) {
+    display: none;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding-top: 30px;
+  }
 }
 
 .headerNavList {
   display: flex;
   @include mq(s) {
-    display: none;
+    display: block;
+    width: 96%;
+    margin: 0 auto;
   }
 }
 
 .headerNavList_linkwrap {
+  @include mq(s) {
+    border-top: 1px solid #999;
+  }
+  &:last-of-type {
+    @include mq(s) {
+      border-bottom: 1px solid #999;
+    }
+  }
   & + & {
     padding-left: 20px;
     position: relative;
+    @include mq(s) {
+      padding-left: 0;
+    }
     &::before {
       content: "";
       position: absolute;
@@ -52,6 +82,9 @@
       display: inline-block;
       width: 1px;
       height: 1.5rem;
+      @include mq(s) {
+        content: none;
+      }
     }
   }
 }
@@ -62,12 +95,30 @@
   &:hover {
     color: #333;
   }
+  @include mq(s) {
+    display: block;
+    font-size: 1.5rem;
+    padding: 10px 5px;
+  }
+}
+
+.headerNavList_item {
+  display: flex;
+  @include mq(s) {
+    display: block;
+    margin-top: 30px;
+    padding-bottom: 30px;
+  }
 }
 
 .headerNavList_item-02 {
   display: flex;
   align-items: center;
   margin-left: 20px;
+  @include mq(s) {
+    display: block;
+    margin-left: 0;
+  }
 }
 
 .headerSpMenuBtn {
@@ -77,7 +128,9 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    width: 64px;
+    width: 24px;
+    margin-right: 1%;
+    margin-left: auto;
     transition: background-color .4s;
     z-index: 9999;
     &.is-active .headerSpMenuBtn_line:nth-of-type(1) {

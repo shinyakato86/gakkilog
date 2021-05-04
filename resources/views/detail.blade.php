@@ -9,24 +9,33 @@
     </div>
     <p class="detailImg"><img src="../uploads/{{ $post->detail_img }}" alt=""></p>
     <div class="iconArea">
-      <p class="commentArea_name d-flex align-items-center mr-5">
+      <p class="commentArea_name">
           <span class="material-icons mr-1">person</span>
           {{ $post->users->name }}
       </p>
-      <p class="d-flex align-items-center mr-5">
+      <p class="commentArea_time">
         <span class="material-icons mr-1">schedule</span>
         {{ $post->users->created_at->format('Y/m/d') }}
       </p>
-      <button class="btn-favo"><span class="material-icons">favorite</span>
-        お気に入りに登録する
-      </button>
+
       @auth
-        @if ($post->user_id === Auth::user()->id)
-        {{ Form::open(['method' => 'delete', 'route' => ['post.destroy', $post->id]]) }}
-          {{ Form::submit('投稿を削除する', ['class' => 'btn btn-danger ml-3']) }}
-        {{ Form::close() }}
-        @endif
+      <!-- いいね判定 -->
+      @if (!$post->isLikedBy(Auth::user()))
+        <button class="btn-favo like-toggle" data-post-id="{{ $post->id }}"><span class="material-icons">favorite</span>
+        <span class="like-counter">{{$post_likes_count}}</span>
+        </button>
+      @else
+        <button class="btn-favo like-toggle liked" data-post-id="{{ $post->id }}"><span class="material-icons">favorite</span>
+        <span class="like-counter">{{$post_likes_count}}</span>
+        </button>
+      @endif
       @endauth
+      @guest
+      <button class="btn-favo like-guest"><span class="material-icons">favorite</span>
+        <span class="like-counter">{{$post_likes_count}}</span>
+      </button>
+      @endguest
+
     </div>
     <div class="infoArea mt30">
 
@@ -45,13 +54,22 @@
             <td>{{ $post->detail_detail }}</td>
           </tr>
           <tr>
-            <th>投稿者コメント</th>
+            <th>投稿者<br class="pc_none">コメント</th>
             <td>{{ $post->detail_comment }}</td>
           </tr>
         </tbody>
       </table>
 
     </div>
+
+    @auth
+      @if ($post->user_id === Auth::user()->id)
+      {{ Form::open(['method' => 'delete', 'route' => ['post.destroy', $post->id]]) }}
+        {{ Form::submit('投稿を削除する', ['class' => 'btn btn-danger mt-5']) }}
+      {{ Form::close() }}
+      @endif
+    @endauth
+
     <h3 class="heading03 mt30">コメント一覧</h3>
 
     <div class="commentArea">

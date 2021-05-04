@@ -63,7 +63,7 @@ body {
 	color: $color_font;
 	word-wrap: break-word;
 	overflow-wrap : break-word;
-  padding-top: 54px;
+  padding-top: 60px;
   @include mq(s) {
     font-family: $font_family;
   }

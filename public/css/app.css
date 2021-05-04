@@ -10069,7 +10069,7 @@ body {
   color: #333;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  padding-top: 54px;
+  padding-top: 60px;
 }
 @media only screen and (max-width: 767px) {
   body {
@@ -10959,6 +10959,15 @@ body {
   display: none !important;
 }
 
+.pc_none {
+  display: none;
+}
+@media only screen and (max-width: 767px) {
+  .pc_none {
+    display: block;
+  }
+}
+
 /*  color
 ------------------------------------ */
 .c-red {
@@ -10966,13 +10975,7 @@ body {
 }
 
 .c-blue {
-  color: #ff8c00 !important;
-}
-
-.color > a {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
+  color: #ee2a73 !important;
 }
 
 .black {
@@ -11159,6 +11162,11 @@ body {
 .heading02Wrap {
   margin-bottom: 40px;
 }
+@media only screen and (max-width: 767px) {
+  .heading02Wrap {
+    margin-bottom: 30px;
+  }
+}
 
 .heading02Wrap {
   position: relative;
@@ -11172,8 +11180,8 @@ body {
   left: 0;
   right: 0;
   margin: 0 auto;
-  height: 1px;
-  background-color: #ff8c00;
+  height: 2px;
+  background-color: #ff847c;
 }
 
 .heading02 {
@@ -11182,12 +11190,22 @@ body {
   text-align: center;
   letter-spacing: 0.2rem;
 }
+@media only screen and (max-width: 767px) {
+  .heading02 {
+    font-size: 2.4rem;
+  }
+}
 
 .heading02-sub {
   font-size: 1.4rem;
   text-align: center;
   letter-spacing: 0.2rem;
   margin-top: 5px;
+}
+@media only screen and (max-width: 767px) {
+  .heading02-sub {
+    font-size: 1.3rem;
+  }
 }
 
 .heading03 {
@@ -11199,10 +11217,15 @@ body {
   margin-bottom: 20px;
   margin-top: 15px;
 }
+@media only screen and (max-width: 767px) {
+  .heading03 {
+    font-size: 1.9rem;
+  }
+}
 .heading03::before {
   content: "";
   border-radius: 3px;
-  background-color: #ff8c00;
+  background-color: #ee2a73;
   display: inline-block;
   width: 0.3rem;
   height: 2rem;
@@ -11221,9 +11244,14 @@ body {
   margin-bottom: 20px;
   margin-top: 15px;
 }
+@media only screen and (max-width: 767px) {
+  .heading04 {
+    font-size: 1.7rem;
+  }
+}
 .heading04::before {
   content: "";
-  background-color: #ff8c00;
+  background-color: #ee2a73;
   display: inline-block;
   width: 7px;
   height: 7px;
@@ -11238,6 +11266,11 @@ body {
   font-size: 1.7rem;
   letter-spacing: 0.2rem;
   margin-bottom: 10px;
+}
+@media only screen and (max-width: 767px) {
+  .heading05 {
+    font-size: 1.6rem;
+  }
 }
 
 .formArea {
@@ -11283,8 +11316,8 @@ body {
 }
 
 .submitBtn {
-  background-color: #ff8c00;
-  border: 2px solid #ff8c00;
+  background-color: #ee2a73;
+  border: 2px solid #ee2a73;
   border-radius: 5px;
   color: #fff;
   display: block;
@@ -11296,7 +11329,7 @@ body {
 }
 .submitBtn:hover {
   background-color: #fff;
-  color: #ff8c00;
+  color: #ee2a73;
 }
 
 .checkbox-01 {
@@ -11311,8 +11344,8 @@ body {
   width: 8px;
   height: 13px;
   margin-top: -9px;
-  border-right: 2px solid #ff8c00;
-  border-bottom: 2px solid #ff8c00;
+  border-right: 2px solid #ee2a73;
+  border-bottom: 2px solid #ee2a73;
   opacity: 0;
   transform: rotate(45deg);
   z-index: 1;
@@ -11342,9 +11375,19 @@ input[type=checkbox]:checked + .checkbox-01::before {
   background-color: #f4f5f7;
   padding: 60px 0 90px;
 }
+@media only screen and (max-width: 767px) {
+  .section-support {
+    padding: 40px 0 60px;
+  }
+}
 
 .section-newPost {
   padding: 60px 0 50px;
+}
+@media only screen and (max-width: 767px) {
+  .section-newPost {
+    padding: 40px 0 30px;
+  }
 }
 
 .section_inner-01 {
@@ -11380,7 +11423,12 @@ input[type=checkbox]:checked + .checkbox-01::before {
 
 .section-search {
   padding: 60px 0 50px;
-  background: url(/images/index_bg.jpg?f61739e79bcceaa5ecbdc78b16592948) no-repeat center/cover;
+  background: url(/images/index_bg.jpg?8ec0d31788f235cc6436d492950fb254) no-repeat center/cover;
+}
+@media only screen and (max-width: 767px) {
+  .section-search {
+    padding: 40px 0 30px;
+  }
 }
 
 .searchArea {
@@ -11457,8 +11505,8 @@ input[type=checkbox]:checked + .checkbox-01::before {
 .searchBtn {
   max-width: 180px;
   margin: 20px auto 0;
-  background-color: #ff8c00;
-  border: 2px solid #ff8c00;
+  background-color: #ee2a73;
+  border: 2px solid #ee2a73;
   border-radius: 5px;
   color: #fff;
   display: block;
@@ -11470,7 +11518,7 @@ input[type=checkbox]:checked + .checkbox-01::before {
 }
 .searchBtn:hover {
   background-color: #fff;
-  color: #ff8c00;
+  color: #ee2a73;
 }
 
 .registBlock_item + .registBlock_item {
@@ -11481,7 +11529,7 @@ input[type=checkbox]:checked + .checkbox-01::before {
   padding-bottom: 5px;
   margin-bottom: 10px;
   font-size: 1.6rem;
-  border-bottom: 2px solid #ff8c00;
+  border-bottom: 2px solid #ee2a73;
 }
 
 .tabBtn {
@@ -11516,7 +11564,7 @@ input[type=checkbox]:checked + .checkbox-01::before {
 .table-01 > tbody th {
   font-size: 1.4rem;
   width: 25%;
-  border-bottom: 2px solid #ff8c00;
+  border-bottom: 2px solid #ee2a73;
   padding: 15px;
   text-align: center;
   vertical-align: middle;
@@ -11609,6 +11657,17 @@ input[type=checkbox]:checked + .checkbox-01::before {
   width: calc((100% - 45px) / 4);
   margin-right: 15px;
 }
+@media only screen and (max-width: 767px) {
+  .newPostArea_item {
+    width: calc((100% - 15px) / 2);
+  }
+  .newPostArea_item:nth-of-type(2n) {
+    margin-right: 0;
+  }
+  .newPostArea_item:nth-of-type(n+3) {
+    margin-top: 15px;
+  }
+}
 .newPostArea_item:last-of-type {
   margin-right: 0;
 }
@@ -11653,11 +11712,21 @@ input[type=checkbox]:checked + .checkbox-01::before {
   height: 160px;
   position: relative;
 }
+@media only screen and (max-width: 767px) {
+  .newPostArea_img {
+    height: 140px;
+  }
+}
 .newPostArea_img > img {
   height: 160px;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+@media only screen and (max-width: 767px) {
+  .newPostArea_img > img {
+    height: 140px;
+  }
 }
 .newPostArea_img::after {
   content: "VIEW MORE";
@@ -11688,8 +11757,8 @@ input[type=checkbox]:checked + .checkbox-01::before {
 .btn-01 {
   margin: 3rem auto 0;
   max-width: 240px;
-  background-color: #ff8c00;
-  border: 2px solid #ff8c00;
+  background-color: #ee2a73;
+  border: 2px solid #ee2a73;
   border-radius: 5px;
   color: #fff;
   display: block;
@@ -11703,7 +11772,7 @@ input[type=checkbox]:checked + .checkbox-01::before {
 }
 .btn-01:hover {
   text-decoration: none;
-  color: #ff8c00;
+  color: #ee2a73;
   background-color: #fff;
 }
 
@@ -11715,12 +11784,12 @@ input[type=checkbox]:checked + .checkbox-01::before {
   font-size: 1.4rem;
   transition: 0.2s;
   color: #fff;
-  background-color: #ff8c00;
-  border: 2px solid #ff8c00;
+  background-color: #ee2a73;
+  border: 2px solid #ee2a73;
 }
 .btn-02:hover {
   text-decoration: none;
-  color: #ff8c00;
+  color: #ee2a73;
   background-color: #fff;
 }
 
@@ -11743,7 +11812,7 @@ input[type=checkbox]:checked + .checkbox-01::before {
   top: 50%;
   transform: translateY(-50%);
   left: 0;
-  color: #ff8c00;
+  color: #ee2a73;
 }
 
 .sideItem_link {
@@ -11763,7 +11832,7 @@ input[type=checkbox]:checked + .checkbox-01::before {
   top: 50%;
   transform: translateY(-50%);
   left: 0;
-  color: #ff8c00;
+  color: #ee2a73;
 }
 
 .sideItem_item {
@@ -11773,14 +11842,34 @@ input[type=checkbox]:checked + .checkbox-01::before {
 .howBlock {
   display: flex;
 }
+@media only screen and (max-width: 767px) {
+  .howBlock {
+    display: block;
+  }
+}
 
 .howBlock_item {
   text-align: center;
   width: calc((100% - 30px) / 3);
   margin-right: 15px;
 }
+@media only screen and (max-width: 767px) {
+  .howBlock_item {
+    width: 100%;
+  }
+}
 .howBlock_item:nth-of-type(3n) {
   margin-right: 0;
+}
+@media only screen and (max-width: 767px) {
+  .howBlock_item:nth-of-type(n+2) {
+    margin-top: 22px;
+  }
+}
+
+.howBlock_text {
+  font-size: 1.3rem;
+  margin-top: 7px;
 }
 
 .myprofile {
@@ -11840,12 +11929,8 @@ input[type=checkbox]:checked + .checkbox-01::before {
   font-size: 60px;
 }
 
-.howBlock_text {
-  font-size: 1.3rem;
-}
-
 .icon_required, .icon_optional {
-  background-color: #ff8c00;
+  background-color: #dc143c;
   border-radius: 5px;
   font-size: 1.2rem;
   padding: 2px 5px;
@@ -11874,4 +11959,20 @@ input[type=checkbox]:checked + .checkbox-01::before {
 .errorText-02 {
   color: red;
   font-size: 1.4rem;
+}
+
+.detailImg {
+  width: 50%;
+  margin: 0 auto;
+}
+@media only screen and (max-width: 767px) {
+  .detailImg {
+    width: 80%;
+  }
+}
+
+.iconArea {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
 }

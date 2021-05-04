@@ -87,10 +87,10 @@ return [
     'mimes'                => ':attribute は :values タイプのみ有効です',
     'mimetypes'            => ':attribute は :values タイプのみ有効です',
     'min'                  => [
-        'numeric' => ':attribute は :min 以上のみ有効です',
-        'file'    => ':attribute は :min KB以上のファイルのみ有効です',
-        'string'  => ':attribute は :min 文字以上のみ有効です',
-        'array'   => ':attribute は :min 個以上のみ有効です',
+        'numeric' => ':attributeは :min 以上のみ有効です',
+        'file'    => ':attributeは :min KB以上のファイルのみ有効です',
+        'string'  => ':attributeは :min 文字以上のみ有効です',
+        'array'   => ':attributeは :min 個以上のみ有効です',
     ],
     'not_in'               => ':attribute 無効な値です',
     'not_regex'            => 'The :attribute format is invalid.',
@@ -113,7 +113,7 @@ return [
     ],
     'string'               => ':attribute は文字列のみ有効です',
     'timezone'             => ':attribute 正しいタイムゾーンのみ有効です',
-    'unique'               => ':attribute は既に登録されています',
+    'unique'               => 'この:attributeは既に登録されています',
     'uploaded'             => ':attribute アップロードに失敗しました',
     'url'                  => ':attribute は正しいURL書式のみ有効です',
 
@@ -136,6 +136,12 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+        ],
+        'email' => [
+            'required' => ':attributeを入力してください',
+        ],
+        'password' => [
+            'required' => ':attributeを入力してください',
         ],
     ],
 

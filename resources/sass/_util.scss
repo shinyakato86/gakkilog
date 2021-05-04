@@ -132,6 +132,13 @@
 	display: none !important;
 }
 
+.pc_none {
+	display: none;
+	@include mq(s){
+		display: block;
+	}
+}
+
 /*  color
 ------------------------------------ */
 .c-red {
@@ -139,11 +146,6 @@
 }
 .c-blue {
 	color: $color_main !important;
-}
-.color > a {
-	display: inline-block;
-	width: 20px;
-	height: 20px;
 }
 .black {
 	background-color: #000000;

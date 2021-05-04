@@ -7,8 +7,8 @@
     <div class="heading02Wrap">
       <h2 class="heading02">{{ $post->detail_name }}</h2>
     </div>
-    <p class="w-50 mx-auto"><img src="../uploads/{{ $post->detail_img }}" alt=""></p>
-    <div class="d-flex mt20">
+    <p class="detailImg"><img src="../uploads/{{ $post->detail_img }}" alt=""></p>
+    <div class="iconArea">
       <p class="commentArea_name d-flex align-items-center mr-5">
           <span class="material-icons mr-1">person</span>
           {{ $post->users->name }}

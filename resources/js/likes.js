@@ -3,7 +3,7 @@ $(function () {
   let likeIllustrationId;
   like.on('click', function () {
     let $this = $(this);
-    likeIllustrationId = $this.data('illustration-id'); //iタグに仕込んだdata-illustration-idの値を取得
+    likeIllustrationId = $this.data('post-id'); //iタグに仕込んだdata-illustration-idの値を取得
     //ajax処理スタート
     $.ajax({
       headers: { //HTTPヘッダ情報をヘッダ名と値のマップで記述
@@ -12,7 +12,7 @@ $(function () {
       url: '/like', //通信先アドレスで、このURLをあとでルートで設定します
       method: 'POST', //HTTPメソッドの種別を指定します。1.9.0以前の場合はtype:を使用。
       data: { //サーバーに送信するデータ
-        'illustration_id': likeIllustrationId //いいねされた投稿のidを送る
+        'post_id': likePostId //いいねされた投稿のidを送る
       },
     })
     //通信成功した時の処理

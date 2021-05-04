@@ -42,3 +42,5 @@ Route::post('/users/mypage/update', [App\Http\Controllers\MypageController::clas
 Route::get('/users/mypage/delete_check', [App\Http\Controllers\MypageController::class, 'delete_check'])->name('mypage.delete_check');
 
 Route::post('/users/mypage/delete', [App\Http\Controllers\MypageController::class, 'delete'])->name('mypage.delete');
+
+Route::post('/like', [App\Http\Controllers\PostController::class, 'like'])->name('post.like');

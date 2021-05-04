@@ -21,7 +21,7 @@ class PostController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * トップページ
      *
      * @return \Illuminate\Http\Response
      */
@@ -36,7 +36,7 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 投稿作成
      *
      * @return \Illuminate\Http\Response
      */
@@ -52,7 +52,7 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 投稿追加
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -87,9 +87,9 @@ class PostController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 投稿詳細
      *
-     * @param  \App\projectlist  $projectlist
+     * @param  \App\post  $projectlist
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -109,63 +109,24 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Projectlist  $projectlist
+     * @param  \App\Post  $projectlist
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $projectlist = Projectlist::find($id);
-        $creators = Creators::all()->where('id',$id);
 
-        $users = \DB::table('users')->pluck('name');
-
-        $categories = \DB::table('categories')->pluck('category_name');
-
-        $departments = \DB::table('departments')->pluck('department_name');
-
-        $status = \DB::table('status')->pluck('status_name');
-
-        $clients = \DB::table('clients')->pluck('client_name');
-
-        return view('edit', compact('projectlist', 'creators', 'users', 'categories', 'departments', 'status', 'clients'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Projectlist  $Projectlist
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, Projectlist $projectlist)
+    public function update(Request $request, $id, Post $post)
     {
-        $projectlist= Projectlist::find($id);
-        $projectlist->project_name = request('project_name');
-        $projectlist->department_name = request('department_name');
-        $projectlist->sales_name = request('sales_name');
-        $projectlist->client_name = request('client_name');
-        $projectlist->price = request('price');
-        $projectlist->status = request('status');
-        $projectlist->accounting_date = request('accounting_date');
-        $projectlist->save();
-
-        $old_creators = Creators::find($id);
-        $old_creators->delete();
-
-        $data = [];
-
-        for ($i=0; $i < count(request('creator_name')); $i++) {
-
-          $data[]= array ('creator_name'=>$request['creator_name'][$i],
-                          'id'=>$projectlist->id,
-                          'creator_price'=>$request['creator_price'][$i],
-                          'creator_category'=>$request['creator_category'][$i]);
-
-        }
-
-        DB::table('creators')->insert($data);
-
-        return redirect()->route('projectlist.detail', ['id' => $projectlist->id]);
+ 
     }
 
     /**
@@ -190,9 +151,9 @@ class PostController extends Controller
 
 
     /**
-     * Remove the specified resource from storage.
+     * 投稿一覧
      *
-     * @param  \App\Projectlist  $projectlist
+     * @param  \App\Post $post
      * @return \Illuminate\Http\Response
      */
     public function list(Request $request)
@@ -232,22 +193,10 @@ class PostController extends Controller
       return view('list', compact('posts', 'categories', 'error_text'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Projectlist  $projectlist
-     * @return \Illuminate\Http\Response
-     */
-    public function detail(Request $request)
-    {
-      return view('detail');
-    }
-
-
         /**
      * コメント投稿
-     * @param Illustration $illustration
-     * @param AddComment $request
+     * @param Comment $comment
+     * @param CommentCreate $request
      * @return \Illuminate\Http\Response
      */
     public function addComment(CommentCreate $request, $id)
@@ -261,6 +210,36 @@ class PostController extends Controller
         $new_comment = Comment::where('id', $comment->id)->with('author')->first();
 
         return redirect()->route('post.detail', ['id' => $comment->post_id]);
+    }
+
+    /**
+     * いいね機能
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function like(Request $request)
+    {
+
+    $user_id = Auth::user()->id; //ログインユーザーのid取得
+    $post_id = $request->post_id; //投稿idの取得
+    $already_liked = Like::where('user_id', $user_id)->where('post_id', $post_id)->first(); //3.
+
+    if (!$already_liked) { //もしこのユーザーがこの投稿にまだいいねしてなかったら
+        $like = new Like; //Likeクラスのインスタンスを作成
+        $like->post_id = $post_id; //Likeインスタンスにpost_id,user_idをセット
+        $like->user_id = $user_id;
+        $like->save();
+    } else { //もしこのユーザーがこの投稿に既にいいねしてたらdelete
+        Like::where('post_id', $post_id)->where('user_id', $user_id)->delete();
+    }
+    //この投稿の最新の総いいね数を取得
+    $post_likes_count = Post::withCount('likes')->findOrFail($post_id)->likes_count;
+    $param = [
+        'post_likes_count' => $post_likes_count
+    ];
+
+    return response()->json($param); //JSONデータをjQueryに返す
+
     }
 
 }

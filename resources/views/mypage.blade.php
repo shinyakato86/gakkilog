@@ -13,7 +13,9 @@
       <div class="profileContent">
         <div class="myprofile mb40">
           <div class="c-profile__img">
-            <img src="/images/noimage.jpg" alt="image" class="noimage">
+          <span class="material-icons">
+            face
+          </span>
           </div>
           <div class="myprofile_content">
             <h2 class="myprofile_name">名前：{{ $auths->name }}</h2>
@@ -24,6 +26,10 @@
           <h3 class="heading03">投稿一覧</h3>
           <ul class="profileArchive_list">
 
+          @if($posts->isEmpty())
+            <p class="error">{{$error_text}}</p>
+          @endif
+          
           @foreach($posts as $post)
             <li class="profileArchive_item"><span class="material-icons">navigate_next</span><a class="profileArchive_link" href="/post/detail_{{ $post->id}}">{{ $post->detail_name }}</a></li>
           @endforeach

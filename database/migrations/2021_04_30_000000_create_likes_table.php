@@ -17,14 +17,14 @@ class CreateLikesTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-           /* $table->foreignId('user_id') //usersテーブルの外部キー設定
+           $table->foreignId('user_id') //usersテーブルの外部キー設定
             ->constrained() //userテーブルのidカラムを参照するconstrainedメソッド
             ->onDelete('cascade'); //削除時のオプション
 
-            $table->foreignId('illustration_id')
+            $table->foreignId('post_id')
                 ->constrained()
                 ->onDelete('cascade');
-*/
+
         });
     }
 

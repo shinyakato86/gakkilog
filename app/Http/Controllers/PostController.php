@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostCreate;
+use App\Http\Requests\CommentCreate;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -55,7 +57,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostCreate $request)
     {
         $post = new Post;
         $user_id = Auth::id();
@@ -169,17 +171,21 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Projectlist  $projectlist
+     * @param  \App\Post $post
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $projectlist = Projectlist::find($id);
-        $creators = Creators::find($id);
+        $post = Post::find($id);
+        $comment = Comment::find($id);
 
-        $projectlist->delete();
-        $creators->delete();
-        return redirect('/projectlist');
+        $post->delete();
+
+        if ($comment != null) {
+          $comment->delete();
+        }
+
+        return redirect('/posts');
     }
 
 
@@ -244,7 +250,7 @@ class PostController extends Controller
      * @param AddComment $request
      * @return \Illuminate\Http\Response
      */
-    public function addComment(Request $request, $id)
+    public function addComment(CommentCreate $request, $id)
     {
         $comment = new Comment();
         $comment->comment = request('add_comment');

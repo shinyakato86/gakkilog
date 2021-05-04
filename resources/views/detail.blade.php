@@ -20,6 +20,13 @@
       <button class="btn-favo"><span class="material-icons">favorite</span>
         お気に入りに登録する
       </button>
+      @auth
+        @if ($post->user_id === Auth::user()->id)
+        {{ Form::open(['method' => 'delete', 'route' => ['post.destroy', $post->id]]) }}
+          {{ Form::submit('投稿を削除する', ['class' => 'btn btn-danger ml-3']) }}
+        {{ Form::close() }}
+        @endif
+      @endauth
     </div>
     <div class="infoArea mt30">
 
@@ -67,11 +74,10 @@
     </div>
 
     <h4 class="heading04">コメント投稿</h4>
-
     {{ Form::open(['route' => ['post.addComment', $post->id]]) }}
-        <textarea class="input-01" name='add_comment' placeholder="コメント入力" cols="30" rows="3">{{ old('add_comment') }}</textarea>
+        <textarea class="input-01" name='add_comment' placeholder="コメント入力" cols="30" rows="3" required="">{{ old('add_comment') }}</textarea>
         @foreach ($errors->all() as $error)
-        <p class="errorText">※{{ $error }}</p>
+        <p class="errorText-02">※{{ $error }}</p>
         @endforeach
         <div class="d-flex justify-content-center mt-5">
           {{ Form::submit('コメントを投稿する', ['class' => 'submitBtn']) }}

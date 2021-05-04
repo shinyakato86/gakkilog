@@ -34,7 +34,9 @@ class MypageController extends Controller
 
         $posts = Post::where('user_id', $auth_id)->get();
 
-        return view('mypage', compact('auths', 'posts'));
+        $error_text = '投稿したレビューはありません。';
+
+        return view('mypage', compact('auths', 'posts', 'error_text'));
     }
 
     public function edit()

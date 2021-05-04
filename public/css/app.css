@@ -11203,6 +11203,13 @@ body {
   left: 0;
 }
 
+.heading05 {
+  font-weight: bold;
+  font-size: 1.7rem;
+  letter-spacing: 0.2rem;
+  margin-bottom: 10px;
+}
+
 .formArea {
   max-width: 720px;
   width: 90%;
@@ -11490,53 +11497,6 @@ input[type=checkbox]:checked + .checkbox-01::before {
   padding: 15px;
 }
 
-.drop-zone {
-  position: relative;
-  width: 80%;
-  height: auto;
-  margin: 0 auto;
-  background-color: #eeeeee;
-  text-align: center;
-}
-.drop-zone .no-active {
-  display: none;
-}
-.drop-zone .drop-zone-text {
-  padding: 10px 0px;
-}
-.drop-zone .overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.75);
-  opacity: 0.8;
-  z-index: 100;
-}
-.drop-zone .overlay-text {
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 33%;
-  color: #F7F7F7;
-}
-.drop-zone input {
-  display: none;
-}
-.drop-zone .select-file {
-  display: inline-block;
-  margin: 15px auto;
-  padding: 5px 15px;
-  font-size: 1.2rem;
-  background-color: #999;
-  border-radius: 5px;
-  color: #F7F7F7;
-  cursor: pointer;
-  z-index: 1;
-}
-.drop-zone .select-file::hover {
-  background-color: #136EB6;
-}
-
 .tabBtnArea {
   display: flex;
 }
@@ -11717,6 +11677,19 @@ input[type=checkbox]:checked + .checkbox-01::before {
   background-color: #fff;
 }
 
+.btn-02 {
+  border-radius: 20px;
+  text-align: center;
+  display: inline-block;
+  padding: 5px 15px;
+  background-color: #ff8c00;
+}
+.btn-02:hover {
+  text-decoration: none;
+  color: #ff8c00;
+  background-color: #fff;
+}
+
 .sideContentList_title {
   position: relative;
   margin-bottom: 7px;
@@ -11768,8 +11741,7 @@ input[type=checkbox]:checked + .checkbox-01::before {
 }
 
 .howBlock_item {
-  display: flex;
-  justify-content: center;
+  text-align: center;
   width: calc((100% - 30px) / 3);
   margin-right: 15px;
 }
@@ -11820,4 +11792,45 @@ input[type=checkbox]:checked + .checkbox-01::before {
   opacity: 0.8;
   color: #333;
   text-decoration: none;
+}
+
+.material-icons.index {
+  display: block;
+  font-size: 60px;
+}
+
+.howBlock_text {
+  font-size: 1.3rem;
+}
+
+.icon_required, .icon_optional {
+  background-color: #ff8c00;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  padding: 2px 5px;
+  color: #fff;
+}
+
+.icon_optional {
+  background-color: #c0c0c0;
+}
+
+.drop-zone {
+  border-radius: 5px;
+  border: 1px solid #9e9e9e;
+  padding: 25px;
+  background-color: #f9f9f9;
+}
+.drop-zone > p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+#file-input {
+  font-size: 1.2rem;
+}
+
+.errorText-02 {
+  color: red;
+  font-size: 1.4rem;
 }

@@ -55,46 +55,47 @@ $(function(){
   })
 
 
-	const dropzone = document.getElementById('js-dropzone');
-	const overlayText = document.getElementById('js-overlay-text');
-	const overlayArea = document.getElementById('js-overlay-area');
-	const fileInput = document.getElementById('file_upload');
-	const selectedFile = document.getElementById('js-selected-file');
-	
-	// ドロップ可能エリアに入った時
-	dropzone.addEventListener('dragenter', () => {
-			overlayArea.classList.add('overlay');
-			overlayText.classList.add('overlay-text');
-			overlayText.classList.remove('no-active');
-	});
-	
-	// ドロップ可能エリアを出た時
-	overlayArea.addEventListener('dragleave', () => {
-			overlayArea.classList.remove('overlay');
-			overlayText.classList.remove('overlay-text');
-			overlayText.classList.add('no-active');
-	});
-	
-	// ドロップ可能エリアにカーソルがある時
-	overlayArea.addEventListener('dragover', (e) => {
+	var dropZone = document.getElementById('drop-zone');
+	var preview = document.getElementById('preview');
+	var fileInput = document.getElementById('file-input');
+
+	dropZone.addEventListener('dragover', function(e) {
+			e.stopPropagation();
 			e.preventDefault();
-	});
-	
-	// ファイルをドロップした時
-	overlayArea.addEventListener('drop', (e) => {
+			this.style.background = '#e1e7f0';
+	}, false);
+
+	dropZone.addEventListener('dragleave', function(e) {
+			e.stopPropagation();
 			e.preventDefault();
-			var fileName = e.dataTransfer.files[0].name;
-			selectedFile.innerText = fileName;
-			selectedFile.classList.remove('no-active');
-			overlayArea.classList.remove('overlay');
-			overlayText.classList.remove('overlay-text');
-			overlayText.classList.add('no-active');
-	});
-	
-	fileInput.addEventListener('change', () => {
-			var fileName = fileInput.files[0].name;
-			selectedFile.classList.remove('no-active');
-			selectedFile.innerText = fileName;
+			this.style.background = '#ffffff';
+	}, false);
+
+	fileInput.addEventListener('change', function () {
+			previewFile(this.files[0]);
 	});
 
+	dropZone.addEventListener('drop', function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			this.style.background = '#ffffff'; //背景色を白に戻す
+			var files = e.dataTransfer.files; //ドロップしたファイルを取得
+			if (files.length > 1) return alert('アップロードできるファイルは1つだけです。');
+			fileInput.files = files; //inputのvalueをドラッグしたファイルに置き換える。
+			previewFile(files[0]);
+	}, false);
+
+	function previewFile(file) {
+			/* FileReaderで読み込み、プレビュー画像を表示。 */
+			var fr = new FileReader();
+			fr.readAsDataURL(file);
+			fr.onload = function() {
+					var img = document.createElement('img');
+					img.setAttribute('src', fr.result);
+					preview.innerHTML = '';
+					preview.appendChild(img);
+			};
+	}
+
 });
+

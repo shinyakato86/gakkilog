@@ -13,17 +13,20 @@
       <div class="showFlexArea">
 
         <div class="registContent">
+        @foreach ($errors->all() as $error)
+          <p class="errorText-02">※{{ $error }}</p>
+        @endforeach
           {{ Form::open(['route' => 'post.store', 'enctype'=>'multipart/form-data']) }}
             <div class="registBlock">
               <div class="registBlock_item">
-                <p class="registBlock_text">メーカー</p>
-                <input class="input-01" type="text" name="detail_maker" placeholder="" value="{{ old('detail_name') }}" required="">
+                <p class="registBlock_text">メーカー<span class="icon_required ml-3">必須</span></p>
+                <input class="input-01" type="text" name="detail_maker" placeholder="" value="{{ old('detail_maker') }}" required="">
               </div>
 
               <div class="registBlock_item">
-                <p class="registBlock_text">カテゴリー</p>
+                <p class="registBlock_text">カテゴリー<span class="icon_required ml-3">必須</span></p>
                   <div class="selectWrap">
-                    <select name="category_id" class="select-01">
+                    <select name="category_id" class="select-01" required="">
                       <option value="">選択</option>
                         @foreach($categories as $value)
                           <option value="{{ $value->id }}">{{ $value->category_name }}</option>
@@ -33,33 +36,32 @@
               </div>
 
               <div class="registBlock_item">
-                <p class="registBlock_text">名称</p>
-                <input class="input-01" type="text" name="detail_name" placeholder="" value="{{ old('detail_name') }}">
+                <p class="registBlock_text">名称<span class="icon_required ml-3">必須</span></p>
+                <input class="input-01" type="text" name="detail_name" placeholder="" value="{{ old('detail_name') }}" required="">
               </div>
 
               <div class="registBlock_item">
-                <p class="registBlock_text">詳細</p>
-                <textarea name="detail_detail" cols="30" rows="5" class="input-01"></textarea>
+                <p class="registBlock_text">詳細<span class="icon_required ml-3">必須</span></p>
+                <textarea name="detail_detail" cols="30" rows="5" class="input-01" value="{{ old('detail_detail') }}" required=""></textarea>
               </div>
 
               <div class="registBlock_item">
-                <p class="registBlock_text">コメント</p>
-                <textarea name="detail_comment" cols="30" rows="5" class="input-01"></textarea>
+                <p class="registBlock_text">コメント<span class="icon_required ml-3">必須</span></p>
+                <textarea name="detail_comment" cols="30" rows="5" class="input-01" value="{{ old('detail_comment') }}" required=""></textarea>
               </div>
 
-              <div class="drop-zone mt40" id="js-dropzone">
-                <div class="overlay-area" id="js-overlay-area">
-                    <p class="no-active" id="js-overlay-text">ここにドラッグ&ドロップしてください。</p>
-                </div>
-                <p class="drop-zone-text">ファイルを選択するか、ドラッグ&ドロップしてください。</p>
-                <label for="file_upload" class="select-file" id="js-select-file">
-                    ファイルを選択してください
-                    <input class="input-01" type="file" name="detail_img" id="file_upload" placeholder="" value="">
-                </label>
-                <div class="selected-file no-active" id="js-selected-file">
+              <div class="registBlock_item">
+                <p class="registBlock_text">画像<span class="fz-s">（ jpeg, png, jpg, gif ）</span><span class="icon_optional ml-3">任意</span></p>
+
+                <div id="drop-zone" class="drop-zone">
+                    <p>ファイルをドラッグ＆ドロップもしくは</p>
+                    <input type="file" name="detail_img" id="file-input">
                 </div>
               </div>
-
+              <div class="registBlock_item">
+              <p>アップロードした画像</p>
+                <div id="preview"></div>
+              </div>
             </div>
 
             <div class="d-flex justify-content-center mt40">

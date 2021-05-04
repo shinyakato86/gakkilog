@@ -7,6 +7,7 @@ $(function () {
   'use strict'; // ヘッダーMENUボタン
 
   $('.js-headerSpMenuBtn').on('click', function () {
+    $('.header').toggleClass('is-active');
     $(this).toggleClass('is-active');
     $('.js-headerNav').slideToggle(300);
   }); // ウインドウ幅を変えるとメニュー閉じる
@@ -21,8 +22,6 @@ $(function () {
       $('.js-headerNav').removeAttr('style');
 
       if ($('.header').hasClass('is-active')) {
-        $('.headerDonate').removeClass('is-passive');
-        $('.spHeaderSearch').removeClass('is-passive');
         $('.js-headerSpMenuBtn').removeClass('is-active');
         $('.header').removeClass('is-active');
       }

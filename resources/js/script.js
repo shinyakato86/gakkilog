@@ -3,7 +3,7 @@ $(function(){
 	
 	// ヘッダーMENUボタン
 	$('.js-headerSpMenuBtn').on('click', function(){
-
+		$('.header').toggleClass('is-active');
 		$(this).toggleClass('is-active');
 		$('.js-headerNav').slideToggle(300);
 
@@ -20,8 +20,6 @@ $(function(){
 			$('.js-headerNav').removeAttr('style');
 	
 			if($('.header').hasClass('is-active')) {
-				$('.headerDonate').removeClass('is-passive');
-				$('.spHeaderSearch').removeClass('is-passive');
 				$('.js-headerSpMenuBtn').removeClass('is-active');
 				$('.header').removeClass('is-active');
 			}

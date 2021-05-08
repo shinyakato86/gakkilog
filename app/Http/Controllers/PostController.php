@@ -97,8 +97,9 @@ class PostController extends Controller
     {
         $post = post::find($id);
 
-        /*$user_id = Post::where('id', $id)->pluck('user_id');
-        $user_name = User::where('id', $user_id)->first();*/
+        $user_id = Post::where('id', $id)->pluck('user_id');
+        $user_name = User::where('id', $user_id)->pluck('name')->first();
+
         $post_likes_count = Post::withCount('likes')->findOrFail($id)->likes_count;
 
         $param = [
@@ -109,7 +110,7 @@ class PostController extends Controller
 
         $error_text = "コメントはありません";
 
-        return view('detail', compact('post', 'comments', 'error_text', 'post_likes_count', 'param'));
+        return view('detail', compact('post', 'comments', 'error_text', 'post_likes_count', 'param', 'user_name'));
     }
 
     /**

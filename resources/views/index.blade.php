@@ -49,7 +49,7 @@
 
         @foreach($posts as $post)
         <article class="newPostArea_item">
-          <a href="{{ route('post.detail', ['id' =>  $post->id]) }}" class="newPostArea_link">
+          <a href="{{ route('post.detail', ['id' => $post->id]) }}" class="newPostArea_link">
             <div class="newPostArea_img">
               <img src="../uploads/{{ $post->detail_img }}" alt="image">
             </div>

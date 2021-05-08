@@ -36,5 +36,10 @@ $(function () {
     });
   });
 });
+$(function () {
+  $('.like-guest').on('click', function () {
+    alert('いいね機能はログイン中のみ使用できます。');
+  });
+});
 /******/ })()
 ;

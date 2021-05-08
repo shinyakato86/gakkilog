@@ -15,7 +15,7 @@
       </p>
       <p class="commentArea_time">
         <span class="material-icons mr-1">schedule</span>
-        {{ $post->users->created_at->format('Y/m/d') }}
+        {{ $post->created_at->format('Y/m/d') }}
       </p>
 
       @auth

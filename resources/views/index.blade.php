@@ -54,7 +54,7 @@
               <img src="../uploads/{{ $post->detail_img }}" alt="image">
             </div>
             <div class="newPostArea_content">
-              <p class="newPostArea_title">{{ htmlspecialchars( str_limit($post->detail_name, $limit = 24, $end = '...') ) }}</p>
+              <p class="newPostArea_title">{{ htmlspecialchars( str_limit($post->detail_name, $limit = 28, $end = '...') ) }}</p>
               <p class="newPostArea_text">{{ htmlspecialchars( str_limit($post->detail_detail, $limit = 54, $end = '...') ) }}</p>
               <div class="newPostArea_catWrap">
                 <p class="newPostArea_cat">{{ $post->category->category_name }}</p>

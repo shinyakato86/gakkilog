@@ -693,6 +693,7 @@ input[type="checkbox"]:checked+.checkbox-01::before{
   @include mq(s) {
     width: 100%;
     display: block;
+    padding: 7px 20px;
   }
 }
 

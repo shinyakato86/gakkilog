@@ -15,7 +15,7 @@
                         <label for="email" class="col-form-label">{{ __('メールアドレス') }}</label>
 
                         <div class="">
-                            <input id="email" type="email" class="input-01 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <input id="email" type="email" class="input-01 @error('email') is-invalid @enderror" name="email" value="admin@admin.co.jp" required autocomplete="email" autofocus>
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -29,7 +29,7 @@
                         <label for="password" class="col-form-label">{{ __('パスワード') }}</label>
 
                         <div class="">
-                            <input id="password" type="password" class="input-01 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                            <input id="password" type="password" class="input-01 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" value="password">
 
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -38,7 +38,7 @@
                             @enderror
                         </div>
                     </div>
-
+                    <p class="mb-5">※フォーム入力済みの初期値でログインできます。</p>
                     <div class="form-group">
                         <div class="col-md-6 offset-md-4">
                             <div class="form-check">

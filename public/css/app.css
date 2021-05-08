@@ -11144,6 +11144,7 @@ body {
   .headerNavList_item-02 {
     display: block;
     margin-left: 0;
+    padding: 30px 0 30px;
   }
 }
 
@@ -11946,6 +11947,7 @@ input[type=checkbox]:checked + .checkbox-01::before {
   .btn-02 {
     width: 100%;
     display: block;
+    padding: 7px 20px;
   }
 }
 

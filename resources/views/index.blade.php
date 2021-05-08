@@ -22,8 +22,8 @@
                 <div class="selectWrap">
                   <select name="category_id" class="input-01">
                     <option value="">選択</option>
-                      @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                      @foreach($categories as $value)
+                        <option value="{{ $value->id }}">{{ $value->category_name }}</option>
                       @endforeach
                   </select>
                 </div>

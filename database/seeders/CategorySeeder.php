@@ -15,10 +15,21 @@ class CategorySeeder extends Seeder
     public function run()
     {
       DB::table('categories')->insert([
-          ['category_name' => 'ギター'],
-          ['category_name' => 'ベース'],
-          ['category_name' => 'ドラム'],
-          ['category_name' => '鍵盤楽器'],
+          [
+            'id' => '1',
+            'category_name' => 'ギター'
+          ],
+          [
+            'id' => '2',
+            'category_name' => 'ベース'
+          ],
+          [
+            'id' => '3',
+            'category_name' => 'ドラム'
+          ],
+          [
+            'id' => '4',
+            'category_name' => '鍵盤楽器'],
       ]);
     }
 }

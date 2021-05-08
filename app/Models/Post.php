@@ -15,7 +15,7 @@ class Post extends Model
     }
 
     public function category(){
-        return $this->belongsTo('App\Models\Category','category_id', 'id', 'categories', 'id');
+        return $this->belongsTo('App\Models\Category','category_id', 'id', 'categories', 'post_id');
     }
 
     public function likes()

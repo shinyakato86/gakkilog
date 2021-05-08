@@ -11,7 +11,7 @@
     <div class="iconArea">
       <p class="commentArea_name">
           <span class="material-icons mr-1">person</span>
-          {{ $post->user_id }}
+          {{ $post->users->name }}
       </p>
       <p class="commentArea_time">
         <span class="material-icons mr-1">schedule</span>
